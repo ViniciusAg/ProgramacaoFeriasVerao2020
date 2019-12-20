@@ -1,0 +1,35 @@
+{
+  "plugins": [
+    "react",
+    "react-native",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    },
+    "sourceType": "module",
+    "useJSXTextNode": true
+  },
+  "env": {
+    "react-native/react-native": true
+  },
+  "extends": [
+    "standard",
+    "plugin:react/recommended",
+    "plugin:react-native/all",
+    "plugin:prettier/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/prop-types": 0,
+    "prettier/prettier": "error",
+    "react-native/no-raw-text": 0 // Avoid false positive, wait for fix
+  }
+}
