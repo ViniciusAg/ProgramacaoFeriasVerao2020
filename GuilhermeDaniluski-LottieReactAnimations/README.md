@@ -14,6 +14,8 @@ This application is made on top of this [Boilerplate](https://github.com/thecodi
     With Redux, state is shared using global *stores*, and changes are predictable: *actions* are applied by *reducers* to the state. While the pattern can be a bit much for small projects, the clear separation of responsibilities and predictability helps with bigger applications.
     
     If you are interested you can [read more about it here](https://redux.js.org/introduction/motivation).
+
+    Note: Redux is using react-redux v7.0.1, you are able to use hooks from redux.
     
 - **Application side-effects (API calls, etc.) are separated from UI and state manipulation using [Redux Saga](https://redux-saga.js.org/)**.
 
@@ -67,6 +69,8 @@ Assuming you have all the requirements installed, you can setup and run the proj
 - `yarn install` to install the dependencies
 - create your [configuration file `App/Config/index.js`](App/Config) from `index.dev.js` (in you are in dev environment) and fill the missing values
 - run the following steps for your platform
+
+Note: This project will not work if you use npm instead of yarn.
 
 ### Android
 
