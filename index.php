@@ -1,9 +1,8 @@
 <?php
 
 /*
-    arquivo para unificar os testes
-    e itens e rotinas que eu for 
-    aprendendo 
+    arquivo para unificar os testes, itens 
+    e rotinas que eu for aprendendo 
 */
 
     function occurOf( $sMainString, $sSubString ){
@@ -12,13 +11,31 @@
         if ( $iPosicao !== false )
             $bOcorrencia = true;
         return $bOcorrencia;
-    }   ////    verifica ocorrencia de uma string em outra
+    }   ////    #   verifys de occurrency of a string in another
 
     $sTeste = "";
     // $sTeste .= "1";
+    $sTeste .= "2";
+
+    if ( occurOf( $sTeste, "2" ) ){
+        $sArray = array( "arcas", "fabil", "luccas", "roninho", "burno" );
+        $iTamanhoArray = count( $sArray );
+        $iAux = 0;
+
+        echo    "<select id='selectArrays' onchange='iSelectedData = this.value'>";
+        while ( $iAux < $iTamanhoArray ){
+            echo "<option value=" . $iAux . " >" . $sArray[ $iAux ] . "</option>";
+            $iAux++;    ////    imprime itens do array
+        } echo  "</select>";
+        
+        echo    "<button onclick='window.alert( tst() );'> Click At Me! </button>";
+        echo    "<script>"; ////    !)nao sei se e a melhor maneira de imprimir elementos ;
+        echo        "var tst = () => { return  document.getElementById( 'selectArrays' ).value; };";
+        echo    "</script>";
+    }   ////    #   making arrays and showing data from them
 
     if ( occurOf( $sTeste, "1" ) ){
         echo "hello world";
-    }
+    }   ////    #   simplewest hello world
 
  ?>
