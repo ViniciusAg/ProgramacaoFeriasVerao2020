@@ -5,6 +5,8 @@ This project is a [React Native](https://facebook.github.io/react-native/) appli
 
 This application is made on top of this [Boilerplate](https://github.com/thecodingmachine/react-native-boilerplate) provided by [TheCodingMachine](https://www.thecodingmachine.com/). It's purpose is to serve as a testing room for [Lottie](https://github.com/airbnb/lottie). Lottie is a library to render on JS the animations exported from Adobe After Effects, using Bodymovin plugin.
 
+WARNING: If you want to use this project as a boilerplate use this [commit](https://github.com/ViniciusAg/ProgramacaoFeriasVerao2020/tree/bcfa8e19eda8343030b645fc956940337cf1b2aa)
+
 ## Architecture
 
 - **State is managed using global [Redux](https://redux.js.org/) stores**.
