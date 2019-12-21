@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Aprendendo JS</title>
+</head>
+<body>
+<h1>Ola JS</h1>
+<script>
+	function pares(x, y) {
+		if(x>=y)
+		{
+			inicio = y;
+			fim = x;
+		}
+		if(y>=x)
+		{
+			inicio = x;
+			fim = y;
+		}
+ 		for(var i=inicio;i<=fim;i++)
+ 		{
+ 			if(i%2==0)
+ 			{
+ 				console.log("Par:", i);
+ 			}
+ 		}
+	}
+	pares(32, 321);
+
+
+</script>
+</body>
+</html>

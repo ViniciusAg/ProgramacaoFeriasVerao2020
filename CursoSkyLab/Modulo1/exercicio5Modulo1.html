@@ -1,0 +1,33 @@
+<title>Aprendendo JS</title>
+</head>
+<body>
+<h1>Ola JS</h1>
+<script>
+	var usuarios = [
+ {
+ nome: "Diego",
+ habilidades: ["Javascript", "ReactJS", "Redux"]
+ },
+ {
+ nome: "Gabriel",
+ habilidades: ["VueJS", "Ruby on Rails", "Elixir"]
+ }
+];
+
+var i = 0
+while(usuarios[i] != undefined)
+{
+	console.log("O", usuarios[i].nome, " possui as habilidades: ");
+	j = 0;
+	while(usuarios[i].habilidades[j] != undefined)
+	{
+		console.log(usuarios[i].habilidades[j]);
+		j++;
+	}
+	
+	i++;
+}
+
+</script>
+</body>
+</html>
