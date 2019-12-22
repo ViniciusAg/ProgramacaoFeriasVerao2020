@@ -8,9 +8,9 @@ pretendo aprender conceitos de Orientação a Objetos e de Arquitetura MVC utili
 
 estou utilizando os seguintes materiais como referência:
 
-    https://www.udemy.com/course/php-do-basico-ao-intermediario/learn/lecture/6990286?start=765#overview
+    https://www.udemy.com/course/php-do-basico-ao-intermediario
 
-    https://www.udemy.com/course/laravelcompleto/learn/lecture/15592844?start=0#overview
+    https://www.udemy.com/course/laravelcompleto
 
     https://riptutorial.com/php
 
