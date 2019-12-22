@@ -5,6 +5,8 @@
     e rotinas que eu for aprendendo 
 */
 
+    require( "outroArquivo.php" );  ////    a file with methods and data
+
     function occurOf( $sMainString, $sSubString ){
         $iPosicao = strpos( $sMainString, $sSubString );
         $bOcorrencia = false; 
@@ -16,7 +18,34 @@
     $sTeste = "";
     // $sTeste .= "1";  ////    simplewest hello world
     // $sTeste .= "2";  ////    making arrays and showing data from them
-    $sTeste .= "3";  ////    associative arrays ( why not a oldest type of json??? )
+    // $sTeste .= "3";  ////    associative arrays ( why not a oldest type of json??? )
+    // $sTeste .= "4";  ////    usage of an external file
+    // $sTeste .= "5";  ////    usage of foreach method
+    $sTeste .= "6";  ////    paramethers with reference in functions
+
+    if ( occurOf( $sTeste, "6" ) ){
+        $sSouUmPonteiroNaoTenteNegarIsso = "hey there";
+
+        _print( $sSouUmPonteiroNaoTenteNegarIsso );
+
+        function euTratoPonteirosTaOk( &$ponteiroQuePodeNaoSerUmPonteiro ){
+            $ponteiroQuePodeNaoSerUmPonteiro = "bye :)";
+        } euTratoPonteirosTaOk( $sSouUmPonteiroNaoTenteNegarIsso );
+
+        _print( $sSouUmPonteiroNaoTenteNegarIsso );
+    }   ////    #   paramethers with reference in functions
+
+    if ( occurOf( $sTeste, "5" ) ){
+        foreach ( $sArrayAssocExterno as $sItem ) {
+            _print( $sItem );
+        }
+    }   ////    #   usage of foreach method
+
+    if ( occurOf( $sTeste, "4" ) ){
+        testThisFile();
+        _print( "" );
+        _print( "by Pereira" );
+    }   ////    #   usage of an external file
 
     if ( occurOf( $sTeste, "3" ) ){
         $sArrayAssociativo = [
@@ -39,7 +68,7 @@
 
         $iAux = 0;
 
-        echo    "<select id='selectArrays' onchange='iSelectedData = this.value'>";
+        echo    "<select id='selectArrays'>";
         while ( $iAux < $iTamanhoArray ){
             echo "<option value=" . $iAux . " >" . $sArray[ $iAux ] . "</option>";
             $iAux++;    ////    imprime itens do array
