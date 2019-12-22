@@ -6,6 +6,7 @@
 */
 
     require( "outroArquivo.php" );  ////    a file with methods and data
+    require( "app/routes.php" );
 
     function occurOf( $sMainString, $sSubString ){
         $iPosicao = strpos( $sMainString, $sSubString );
@@ -21,7 +22,42 @@
     // $sTeste .= "3";  ////    associative arrays ( why not a oldest type of json??? )
     // $sTeste .= "4";  ////    usage of an external file
     // $sTeste .= "5";  ////    usage of foreach method
-    $sTeste .= "6";  ////    paramethers with reference in functions
+    // $sTeste .= "6";  ////    paramethers with reference in functions
+    $sTeste .= "7";  ////    started with a html file
+    // $sTeste .= "8";  ////    receiving parameters with $_POST[] method
+    $sTeste .= "9";  ////   receiving parameters with filter_input() method
+
+    if ( occurOf( $sTeste, "9" ) ){
+        $loginUser = filter_input( INPUT_POST, "loginUser", FILTER_SANITIZE_STRING );
+        $loginPass = filter_input( INPUT_POST, "loginPass", FILTER_SANITIZE_STRING );
+
+        if ( $loginUser )
+            _print( "login " . $loginUser );
+        if ( $loginPass )
+            _print( "senha " . $loginPass );
+    }   #   ////    receiving parameters with filter_input() method
+
+    if ( occurOf( $sTeste, "8" ) ){
+        $swork1 = "loginUser";
+        $boolExistLoginUser = isset( $_POST[ $swork1 ] );    
+        if ( $boolExistLoginUser ){
+            $loginUser = $_POST[ $swork1 ]; _print( "login " . $loginUser );
+        }
+        $swork1 = "loginPass";
+        $boolExistLoginPass = isset( $_POST[ $swork1 ] );    
+        if ( $boolExistLoginPass ){
+            $loginPass = $_POST[ $swork1 ]; _print( "senha " . $loginPass );
+        }
+    }   #   ////    receiving parameters with $_POST[] method
+
+    if ( occurOf( $sTeste, "7" ) ){
+        $htmEstruturaFile = file_get_contents( $htmEstruturaFileRoute );
+        $htmLoginFile = file_get_contents( $htmLoginFileRoute );
+
+        $pageToShow = str_replace( "{{CONTENT}}", $htmLoginFile, $htmEstruturaFile );
+
+        _print( $pageToShow );
+    }   #   ////    started with a html file
 
     if ( occurOf( $sTeste, "6" ) ){
         $sSouUmPonteiroNaoTenteNegarIsso = "hey there";
