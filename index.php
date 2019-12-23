@@ -8,6 +8,8 @@
     require( "outroArquivo.php" );  ////    a file with methods and data
     require( "app/routes.php" );
 
+    date_default_timezone_set( "America/Sao_Paulo" );
+
     function occurOf( $sMainString, $sSubString ){
         $iPosicao = strpos( $sMainString, $sSubString );
         $bOcorrencia = false; 
@@ -17,17 +19,35 @@
     }   ////    #   verifys de occurrency of a string in another
 
     $sTeste = "";
-    // $sTeste .= "1";  ////    simplewest hello world
-    // $sTeste .= "2";  ////    making arrays and showing data from them
-    // $sTeste .= "3";  ////    associative arrays ( why not a oldest type of json??? )
-    // $sTeste .= "4";  ////    usage of an external file
-    // $sTeste .= "5";  ////    usage of foreach method
-    // $sTeste .= "6";  ////    paramethers with reference in functions
-    $sTeste .= "7";  ////    started with a html file
-    // $sTeste .= "8";  ////    receiving parameters with $_POST[] method
-    $sTeste .= "9";  ////   receiving parameters with filter_input() method
+    // $sTeste .= "a";  ////    simplewest hello world
+    // $sTeste .= "b";  ////    making arrays and showing data from them
+    // $sTeste .= "c";  ////    associative arrays ( why not a oldest type of json??? )
+    // $sTeste .= "d";  ////    usage of an external file
+    // $sTeste .= "e";  ////    usage of foreach method
+    // $sTeste .= "f";  ////    paramethers with reference in functions
+    $sTeste .= "g";  ////    started with a html file
+    // $sTeste .= "h";  ////    receiving parameters with $_POST[] method
+    // $sTeste .= "i";  ////   receiving parameters with filter_input() method
+    // $sTeste .= "j";  ////    showing the current date as a spam
+    // $sTeste .= "k";  ////    encryptin the received post data     
 
-    if ( occurOf( $sTeste, "9" ) ){
+    if ( occurOf( $sTeste, "k" ) ){
+        $loginUser = "loginUser";
+        $loginPass = "loginPass";
+        getPostForms( $loginUser, $loginPass );
+
+        if ( $loginUser )
+            _print( "recebi o login: " . $loginUser );
+        if ( $loginPass )
+            _print( "recebi a senha:  " . md5( $loginPass ) );
+
+    }   ////    #   encryptin the received post data
+
+    if ( occurOf( $sTeste, "j" ) ){
+        _printAlert( "the current date is: " . date( "D d/m/y" ) );
+    }   ////    #   showing the current date as a spam
+
+    if ( occurOf( $sTeste, "i" ) ){
         $loginUser = filter_input( INPUT_POST, "loginUser", FILTER_SANITIZE_STRING );
         $loginPass = filter_input( INPUT_POST, "loginPass", FILTER_SANITIZE_STRING );
 
@@ -35,9 +55,9 @@
             _print( "login " . $loginUser );
         if ( $loginPass )
             _print( "senha " . $loginPass );
-    }   #   ////    receiving parameters with filter_input() method
+    }   ////    #   receiving parameters with filter_input() method
 
-    if ( occurOf( $sTeste, "8" ) ){
+    if ( occurOf( $sTeste, "h" ) ){
         $swork1 = "loginUser";
         $boolExistLoginUser = isset( $_POST[ $swork1 ] );    
         if ( $boolExistLoginUser ){
@@ -48,18 +68,18 @@
         if ( $boolExistLoginPass ){
             $loginPass = $_POST[ $swork1 ]; _print( "senha " . $loginPass );
         }
-    }   #   ////    receiving parameters with $_POST[] method
+    }   ////    #   receiving parameters with $_POST[] method
 
-    if ( occurOf( $sTeste, "7" ) ){
+    if ( occurOf( $sTeste, "g" ) ){
         $htmEstruturaFile = file_get_contents( $htmEstruturaFileRoute );
         $htmLoginFile = file_get_contents( $htmLoginFileRoute );
 
         $pageToShow = str_replace( "{{CONTENT}}", $htmLoginFile, $htmEstruturaFile );
 
         _print( $pageToShow );
-    }   #   ////    started with a html file
+    }   ////    #   started with a html file
 
-    if ( occurOf( $sTeste, "6" ) ){
+    if ( occurOf( $sTeste, "f" ) ){
         $sSouUmPonteiroNaoTenteNegarIsso = "hey there";
 
         _print( $sSouUmPonteiroNaoTenteNegarIsso );
@@ -71,19 +91,19 @@
         _print( $sSouUmPonteiroNaoTenteNegarIsso );
     }   ////    #   paramethers with reference in functions
 
-    if ( occurOf( $sTeste, "5" ) ){
+    if ( occurOf( $sTeste, "e" ) ){
         foreach ( $sArrayAssocExterno as $sItem ) {
             _print( $sItem );
         }
     }   ////    #   usage of foreach method
 
-    if ( occurOf( $sTeste, "4" ) ){
+    if ( occurOf( $sTeste, "d" ) ){
         testThisFile();
         _print( "" );
         _print( "by Pereira" );
     }   ////    #   usage of an external file
 
-    if ( occurOf( $sTeste, "3" ) ){
+    if ( occurOf( $sTeste, "c" ) ){
         $sArrayAssociativo = [
             "item1" => "seria",
             "item2" => "eu",
@@ -98,7 +118,7 @@
         echo "array associativo " . $sArrayAssociativo[ "item4" ];
     }   ////    #   associative arrays ( why not a oldest type of json??? )
 
-    if ( occurOf( $sTeste, "2" ) ){
+    if ( occurOf( $sTeste, "b" ) ){
         $sArray = array( "arcas", "fabil", "luccas", "roninho", "burno" );
         $iTamanhoArray = count( $sArray );
 
@@ -116,7 +136,7 @@
         echo    "</script>";
     }   ////    #   making arrays and showing data from them
 
-    if ( occurOf( $sTeste, "1" ) ){
+    if ( occurOf( $sTeste, "a" ) ){
         echo "hello world";
     }   ////    #   simplewest hello world
 
