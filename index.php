@@ -29,7 +29,7 @@
     // $sTeste .= "h";  ////    receiving parameters with $_POST[] method
     // $sTeste .= "i";  ////   receiving parameters with filter_input() method
     // $sTeste .= "j";  ////    showing the current date as a spam
-    // $sTeste .= "k";  ////    encryptin the received post data     
+    // $sTeste .= "k";  ////    encrypting the received post data  
 
     if ( occurOf( $sTeste, "k" ) ){
         $loginUser = "loginUser";
@@ -40,8 +40,7 @@
             _print( "recebi o login: " . $loginUser );
         if ( $loginPass )
             _print( "recebi a senha:  " . md5( $loginPass ) );
-
-    }   ////    #   encryptin the received post data
+    }   ////    #   encrypting the received post data
 
     if ( occurOf( $sTeste, "j" ) ){
         _printAlert( "the current date is: " . date( "D d/m/y" ) );

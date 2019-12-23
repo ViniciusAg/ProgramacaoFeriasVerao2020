@@ -12,6 +12,8 @@ estou utilizando os seguintes materiais como referência:
 
     https://www.udemy.com/course/laravelcompleto
 
+    https://www.youtube.com/watch?v=Y0DfK_lXu_M&list=PLgbAYUnxJ2NE6eM2xkOlpqJ5sl37bLyKx
+
     https://riptutorial.com/php
 
     https://riptutorial.com/laravel
