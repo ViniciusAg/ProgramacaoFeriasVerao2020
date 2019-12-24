@@ -27,9 +27,43 @@
     // $sTeste .= "f";  ////    paramethers with reference in functions
     $sTeste .= "g";  ////    started with a html file
     // $sTeste .= "h";  ////    receiving parameters with $_POST[] method
-    // $sTeste .= "i";  ////   receiving parameters with filter_input() method
+    // $sTeste .= "i";  ////    receiving parameters with filter_input() method
     // $sTeste .= "j";  ////    showing the current date as a spam
-    // $sTeste .= "k";  ////    encrypting the received post data  
+    // $sTeste .= "k";  ////    encrypting the received post data
+    // $sTeste .= "l";  ////    creating cookies
+    // $sTeste .= "m";  ////    test with json and array
+    // $sTeste .= "n";  ////    applying a personal method to encode and decode data
+
+    if ( occurOf( $sTeste, "n" ) ){
+        $sTestCrypt = "hello world";
+
+        for ( $i = 0; $i < 17; $i++ )
+            $sTestCrypt = base64_encode( $sTestCrypt );
+
+        for ( $i = 0; $i < 17; $i++ )
+            $sTestCrypt = base64_decode( $sTestCrypt );
+
+        echo $sTestCrypt;
+    }   ////    #   applying a personal method to encode and decode data
+
+    if ( occurOf( $sTeste, "m" ) ){
+        $sArray = array( 
+            "item1" => "hello",
+            "item2" => "world"
+         ); echo "array: " . var_dump( $sArray );
+
+        $sJson = '{ "item1": "this", "item2": "is", "item3": "a", "item4": "little", "item5": "test" }';
+        echo "json: " . var_dump( $sJson );
+
+        $sJsonToArray = json_decode( $sJson );
+
+        echo var_dump( $sJsonToArray );
+    }   ////    #   test with json and array
+
+    if ( occurOf( $sTeste, "l" ) ){
+        setcookie( "teste", "hello world", 20 );
+        echo filter_input( INPUT_COOKIE, "teste", FILTER_SANITIZE_STRING );
+    }   ////    #   creating cookies
 
     if ( occurOf( $sTeste, "k" ) ){
         $loginUser = "loginUser";
@@ -75,7 +109,7 @@
 
         $pageToShow = str_replace( "{{CONTENT}}", $htmLoginFile, $htmEstruturaFile );
 
-        _print( $pageToShow );
+        echo $pageToShow;
     }   ////    #   started with a html file
 
     if ( occurOf( $sTeste, "f" ) ){
