@@ -25,7 +25,7 @@
     // $sTeste .= "d";  ////    usage of an external file
     // $sTeste .= "e";  ////    usage of foreach method
     // $sTeste .= "f";  ////    paramethers with reference in functions
-    $sTeste .= "g";  ////    started with a html file
+    // $sTeste .= "g";  ////    started with a html file
     // $sTeste .= "h";  ////    receiving parameters with $_POST[] method
     // $sTeste .= "i";  ////    receiving parameters with filter_input() method
     // $sTeste .= "j";  ////    showing the current date as a spam
@@ -33,6 +33,23 @@
     // $sTeste .= "l";  ////    creating cookies
     // $sTeste .= "m";  ////    test with json and array
     // $sTeste .= "n";  ////    applying a personal method to encode and decode data
+    $sTeste .= "o";  ////    usying database and making querys
+
+    if ( occurOf( $sTeste, "o" ) ){
+        $sServer    = "localhost";
+        $sBase      = "programacaoferiasverao2020";
+        $sUser      = "root";
+        $sPass      = "";
+
+        $oMsqli = new mysqli( $sServer, $sUser, $sPass, $sBase );
+
+        $oMsqli->set_charset( "utf8" );
+
+        $oQuery = $oMsqli->query( "select nome from cadastros" );
+
+        foreach ( $oQuery as $item )
+            _print( $item["nome"] );
+    }   ////    #   usying database and making querys
 
     if ( occurOf( $sTeste, "n" ) ){
         $sTestCrypt = "hello world";
