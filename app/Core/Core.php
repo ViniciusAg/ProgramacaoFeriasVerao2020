@@ -1,12 +1,6 @@
 <?php
 
     class Core{
-
-        function validateLogin( $sLoginUser, $sLoginPass ){
-
-            
-        }
-
         public function start(){
             $sController = new HomeController;
 
@@ -22,12 +16,9 @@
                 "loginPass", 
                 FILTER_SANITIZE_STRING,
                 FILTER_FLAG_NO_ENCODE_QUOTES
-            );
-
-            if ( isset( $sLoginUser ) && isset( $sLoginPass ) )
-                Core::validateLogin( $sLoginUser, $sLoginPass );
-            else
-                $sController->index();
+            ); 
+            
+            $sController->index();
         }
     }
 

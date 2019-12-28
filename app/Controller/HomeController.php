@@ -7,6 +7,8 @@
             $htmPageToShow    = str_replace( "{{CONTENT}}", $htmLoginBody, $htmEstruturaPage );
 
             echo $htmPageToShow;
+
+            Login::Login();
         }
     }
 
