@@ -1,24 +1,38 @@
 <?php
 
     class Core{
-        public function start(){
-            $sController = new HomeController;
+    	function getMyController( $sTipo, &$sController ){
+    		if ( $sTipo == "X" )
+                $sController = "AdminController";
+            if ( $sTipo == "A" )
+                $sController = "AlunoController";
+            if ( $sTipo == "P" )
+                $sController = "ProfessorController";
+    	}
 
-            $sLoginUser = filter_input( 
-                INPUT_POST, 
-                "loginUser", 
-                FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            );
+    	function tst(){
+    		echo "hello world";
+    	}
 
-            $sLoginPass = filter_input( 
-                INPUT_POST, 
-                "loginPass", 
-                FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            ); 
-            
-            $sController->index();
+        public function start( $htmEstruturaPage ){
+        	$bLoggedUser = false;
+        	$bLoggedUser = isset( $_SESSION[ "tipo" ] );
+        	$sLoginUser  = NULL;
+        	$sLoginPass  = NULL;
+        	$bStatus     = false;
+
+        	$sController = "LoginController";
+        	$sAction     = "index";
+
+        	if ( $bLoggedUser ){
+        		Core::getMyController( $_SESSION[ "tipo" ], $sController );
+        	}else{
+        		$oController = new LoginController;
+        		$oController->login( $sLoginUser, $sLoginPass, $bLoggedUser, $sUserType );
+        		
+        		if ( $bLoggedUser )
+        			Core::getMyController( $sUserType, $sController );
+        	} call_user_func_array( array( new $sController, $sAction ), array( $htmEstruturaPage ) );
         }
     }
 
