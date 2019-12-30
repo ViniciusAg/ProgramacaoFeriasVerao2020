@@ -1,24 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-    <body class="masthead">
-		<div class="ui container" style="padding-top: 3%">
-			<div class="ui four column middle center aligned grid">
-				<div class="sixteen wide mobile eight wide tablet eight wide computer column">
-					<form class="ui form" method="POST">
-						<table class="ui purple celled table">
-							<thead>
-								<tr>
-									<th>Turma {{MNEMONICO_TURMA}}</th>
-								</tr>
-							</thead>
-							<tbody>
-								{{MNEMONICO_LISTAGEM}}
-							</tbody>
-						</table>				  
-					    <button class="ui large purple button" type="submit">Enviar</button>
-					</form>
-				</div>
-			</div>
+<div class="ui container" style="padding-top: 3vh">
+
+	{{MNEMONICO_ICON_LOGOUT}}
+
+	<div class="ui one column middle center aligned grid">
+		<div class="sixteen wide mobile eight wide tablet eight wide computer column">
+
+			<form id="FormView" name="FormView" class="ui form" method="POST">
+				<table class="ui pink celled table">
+					<thead>
+						<tr>
+							<th>Turma {{MNEMONICO_TURMA}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{MNEMONICO_LISTAGEM}}
+					</tbody>
+				</table>				  
+			    <button 
+			    	class="ui large purple button" 
+			    	type="submit">
+			    	Enviar
+			    </button>
+
+				{{MNEMONICO_INPUT_LOGOUT}}
+
+			</form>
+			
 		</div>
-	</body>
-</html>
+	</div>
+</div>

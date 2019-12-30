@@ -19,7 +19,7 @@
     }   ////    #   verifys de occurrency of a string in another
 
     $sTeste = "";
-    // $sTeste .= "a";  ////    simplewest hello world
+    $sTeste .= "a";  ////    simplewest hello world
     // $sTeste .= "b";  ////    making arrays and showing data from them
     // $sTeste .= "c";  ////    associative arrays ( why not a oldest type of json??? )
     // $sTeste .= "d";  ////    usage of an external file
@@ -33,7 +33,7 @@
     // $sTeste .= "l";  ////    creating cookies
     // $sTeste .= "m";  ////    test with json and array
     // $sTeste .= "n";  ////    applying a personal method to encode and decode data
-    $sTeste .= "o";  ////    usying database and making querys
+    // $sTeste .= "o";  ////    usying database and making querys
 
     if ( occurOf( $sTeste, "o" ) ){
         $sServer    = "localhost";

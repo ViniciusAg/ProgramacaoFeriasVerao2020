@@ -7,4 +7,4 @@ deny from all
 
 Options +FollowSymlinks
 RewriteEngine On
-RewriteRule .*\.*$ view/ErrorView.html [nc]
+RewriteRule .*\.*$ View/ErrorView.html [nc]

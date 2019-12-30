@@ -1,0 +1,135 @@
+<div class="ui container" style="padding-top: 1vh">
+	<div class="ui one column middle center aligned grid">
+
+		{{MNEMONICO_ICON_VOLTAR}}
+
+		<div class="twelve wide mobile eight wide tablet six wide computer column">
+			<form class="ui form" id="FormView" name="FormView" method="POST">
+				<h1>Novo Usuário</h1>
+
+				<div class="field">
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="firstName"
+							id="firstName" 
+						placeholder="Primeiro nome">
+					</div>
+				</div>	<!-- PRIMEIRO NOME -->
+
+				<div class="field">
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="lastName"
+							id="lastName" 
+						placeholder="Último nome">
+					</div>
+				</div>	<!-- ULTIMO NOME -->
+
+				<div class="field">
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="rgNumber"
+							id="rgNumber" 
+						placeholder="Número RG">
+					</div>
+				</div>	<!-- NUMERO RG -->
+
+				<div class="field">
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="emailAdress"
+							id="emailAdress" 
+						placeholder="Endereço E-mail">
+					</div>
+				</div>	<!-- ENDEREÇO EMAIL -->
+
+				<div class="field">
+					<select 
+						class="ui dropdown" 
+						name="userType"
+						onchange="checkNewUserType();" 
+					id="userType">
+
+						{{MNEMONICO_SELECT_USER_TYPE}}
+
+						<!-- <option value="">Sou um...</option>
+						<option value="A">Aluno</option>
+						<option value="P">Professor</option> -->
+					</select>
+				</div>	<!-- TIPO USUARIO -->
+
+				<div id="selectDisciplina" class="field hide">
+					<select 
+						class="ui fluid search dropdown" 
+						name="disciplina[]"
+						id="disciplina" 
+					multiple="">
+
+						{{MNEMONICO_SELECT_DISCIPLINA}}
+
+						<!-- <option value="">Disciplinas</option>
+						<option value="*1*">Português</option>
+						<option value="*2*">Geografia</option>
+						<option value="*3*">Matemática</option>
+						<option value="*4*">História</option> -->
+					</select>
+				</div>	<!-- DISCIPLINA -->
+
+				<div class="field">
+					<div class="ui large icon input">
+						<input 
+							type="password" 
+							name="newPassword"
+							id="newPassword" 
+						placeholder="Senha">
+					</div>
+				</div>	<!-- SENHA -->
+
+				<div class="field">
+					<div class="ui large icon input">
+						<input 
+							type="password" 
+							name="reNewPassword"
+							id="reNewPassword" 
+						placeholder="Confirmação Senha">
+					</div>
+				</div>	<!-- CONFIRMACAO SENHA -->
+
+				<button 
+					class="ui large purple button" 
+					type="submit">
+					Enviar
+				</button>
+
+				<input 
+					type="hidden" 
+					name="CurrentView" 
+					id="CurrentView" 
+				value="RegisterView">
+
+				<input 
+					type="hidden" 
+					name="NewRegisterForm" 
+					id="NewRegisterForm" 
+				value="true">
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+
+	function checkNewUserType(){
+		var sCurrentUserType = $("#userType").val();
+		var oSelectDisciplinas = $( "#selectDisciplina" );
+		if( sCurrentUserType == "P" )
+			oSelectDisciplinas.removeClass( "hide" );
+		else
+			oSelectDisciplinas.addClass( "hide" );
+	}
+
+</script>

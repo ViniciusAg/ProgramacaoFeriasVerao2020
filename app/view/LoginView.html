@@ -1,24 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-    <body class="masthead">
-		<div class="ui container" style="padding-top: 17%">
-			<div class="ui four column middle center aligned grid">
-				<div class="sixteen wide mobile eight wide tablet four wide computer column">
-					<form class="ui form" method="POST">
-					  <div class="field">
-                      <div class="ui large icon input">
-                        <input type="text" name="loginUser" placeholder="Login">
-                        </div>
-					  </div>
-					  <div class="field">
-                        <div class="ui large icon input">
-                        <input type="password" name="loginPass" placeholder="Senha">
-                        </div>
-					  </div>
-					  <button class="ui large purple button" type="submit">Enviar</button>
-					</form>
+<div class="ui container" style="padding-top: 33vh">
+	<div class="ui four column middle center aligned grid">
+		<div class="eight wide mobile eight wide tablet four wide computer column">
+			<form class="ui form" id="FormView" name="FormView" method="POST">
+				<div class="field">
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="loginUser" 
+						placeholder="Login">
+					</div>
 				</div>
-			</div>
+				<div class="field">
+					<div class="ui large icon input">
+						<input 
+							type="password" 
+							name="loginPass" 
+						placeholder="Senha">
+					</div>
+				</div>
+				<div class="field">
+					<a 
+						class="ui large purple button"
+					onclick="register();">
+						Novo
+					</a>
+					<button 
+						class="ui large purple button" 
+					type="submit">
+						Entrar
+					</button>
+				</div>
+				<input type="hidden" name="getNewRegister" id="getNewRegister" value="false">
+			</form>
 		</div>
-	</body>
-</html>
+	</div>
+</div>
+
+<script>
+	function register(){
+		$( "#getNewRegister" ).val( "true" );
+       	$( "#FormView" ).submit();
+    }
+</script>

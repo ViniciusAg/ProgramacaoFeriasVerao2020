@@ -1,3 +1,23 @@
+<style>
+    .item-fixo {
+        position: fixed;
+    }
+
+    .superior-esquerdo {
+        top: 1vh;
+        left: 3vh !important;
+    }
+
+    .superior-direito {
+        top: 5%;
+        right: 5% !important;;
+    }
+
+    .hide {
+        display: none;
+    }
+</style>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -7,10 +27,25 @@
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="semantic/semantic.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="icon" href="../../img/logo-uneafro-small.jpg">
         <title>phpRosaParksProject</title>
     </head>
-    
     <body class="masthead">
+
+        <figure class="item-fixo superior-esquerdo">
+            <img src="img/uneafro_peq.png">
+        </figure>
+
         {{CONTENT}}
+
     </body>
 </html>
+
+<script>
+    $('.ui.dropdown').dropdown();
+
+    function logOut(){
+        $( "#LogOutSession" ).val( "true" );
+        $( "#FormView" ).submit();
+    }
+</script>

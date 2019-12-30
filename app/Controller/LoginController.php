@@ -31,7 +31,7 @@
         }
 
         public function index( $htmEstruturaPage ){
-            $htmLoginBody     = file_get_contents( "app/view/LoginView.html" );
+            $htmLoginBody = file_get_contents( "app/View/LoginView.html" );
             echo $htmLoginBody;
         }
     }

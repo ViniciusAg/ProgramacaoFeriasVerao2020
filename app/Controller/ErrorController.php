@@ -14,14 +14,12 @@
                 }
             }
 
-            $htmProfessorView = file_get_contents( "app/View/ProfessorView.html" );
-            $htmProfessorView = str_replace( "{{MNEMONICO_LISTAGEM}}" , $sListagemDeAlunos, $htmProfessorView);
-            $htmProfessorView = str_replace( "{{MNEMONICO_TURMA}}", "Geral", $htmProfessorView );
+            $htmLoginBody = file_get_contents( "app/View/ProfessorView.html" );
+            $htmLoginBody = str_replace( "{{MNEMONICO_LISTAGEM}}" , $sListagemDeAlunos, $htmLoginBody);
+            $htmLoginBody = str_replace( "{{MNEMONICO_TURMA}}", "Geral", $htmLoginBody );
 
-            $oController = new LogoutController;
-            $oController->index( $htmProfessorView );
             
-            echo $htmProfessorView;
+            echo $htmLoginBody;
 
         }
     }

@@ -17,3 +17,12 @@
     background-image: url("../img/bckground.jpg") !important;
     background-size: auto !important;
 }
+
+.area-cabecalho{
+	position: absolute;
+	right: 10%;
+}
+
+.inline-item{
+        display: inline-block;
+}
