@@ -6,7 +6,7 @@
             $oRequestAlunosTurma = $oRequestAlunosTurma->getListagemDaTurma();
 
             $sListagemDeAlunos = "";
-            $sOnClick = '$( this ).addClass( "positive" )';
+            $sOnClick = 'getNewStatus( $( this ) );';
 
             if ( ($oRequestAlunosTurma) && ($oRequestAlunosTurma->num_rows) ){
                 foreach ( $oRequestAlunosTurma as $item) {

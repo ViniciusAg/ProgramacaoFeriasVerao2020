@@ -3,41 +3,136 @@
 
 		{{MNEMONICO_ICON_VOLTAR}}
 
-		<div class="twelve wide mobile eight wide tablet six wide computer column">
+		<div class="twelve wide mobile sixteen wide tablet eight wide computer column">
 			<form class="ui form" id="FormView" name="FormView" method="POST">
-				<h1>Novo Usuário</h1>
 
 				<div class="field">
+					<label class="titulo-medio">Nome Completo</label>
 					<div class="ui large icon input">
 						<input 
 							type="text" 
-							name="firstName"
-							id="firstName" 
-						placeholder="Primeiro nome">
+							name="NomeCompleto"
+							id="NomeCompleto" 
+						placeholder="Nome Completo">
 					</div>
-				</div>	<!-- PRIMEIRO NOME -->
+				</div>	<!-- NOME COMPLETO -->
 
 				<div class="field">
+					<label class="titulo-medio">CPF</label>
 					<div class="ui large icon input">
 						<input 
 							type="text" 
-							name="lastName"
-							id="lastName" 
-						placeholder="Último nome">
+							name="CPF"
+							id="CPF" 
+						placeholder="CPF">
 					</div>
-				</div>	<!-- ULTIMO NOME -->
+				</div>	<!-- CPF -->
 
 				<div class="field">
+					<label class="titulo-medio">Data Nascimento</label>
 					<div class="ui large icon input">
 						<input 
 							type="text" 
-							name="rgNumber"
-							id="rgNumber" 
-						placeholder="Número RG">
+							name="DataNascimento"
+							id="DataNascimento" 
+						placeholder="DD/MM/AA">
 					</div>
-				</div>	<!-- NUMERO RG -->
+				</div>	<!-- DATA NASCIMENTO -->
+
+				<div id="selectEtnia" class="field">
+					<label class="titulo-medio">Etnia</label>
+					<select 
+						class="ui fluid search dropdown" 
+						name="UsuarioEtnia"
+					id="UsuarioEtnia">
+
+						{{MNEMONICO_SELECT_ETNIA}}
+
+					</select>
+				</div>	<!-- SELECT ETNIA -->
+
+				<div id="selectGenero" class="field">
+					<label class="titulo-medio">Gênero</label>
+					<select 
+						class="ui fluid search dropdown" 
+						name="UsuarioGenero"
+					id="UsuarioGenero">
+
+						{{MNEMONICO_SELECT_GENERO}}
+
+					</select>
+				</div>	<!-- SELECT GENERO -->
+
+				<div id="selectGenero" class="field">
+					<label class="titulo-medio">Escolaridade</label>
+					<select 
+						class="ui fluid search dropdown" 
+						name="UsuarioEscolaridade"
+					id="UsuarioEscolaridade">
+
+						{{MNEMONICO_SELECT_ESCOLARIDADE}}
+
+					</select>
+				</div>	<!-- SELECT ESCOLARIDADE -->
 
 				<div class="field">
+					<label class="titulo-medio">CEP</label>
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="CEP"
+							id="CEP" 
+							onchange="getEndereco( $( this ).val() );" 
+						placeholder="CEP">
+					</div>
+				</div>	<!-- CEP -->
+
+				<div class="field">
+					<label class="titulo-medio">Logradouro</label>
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="Logradouro"
+							id="Logradouro" 
+						placeholder="Logradouro">
+					</div>
+				</div>	<!-- LOGRADOURO -->
+
+				<div class="field">
+					<label class="titulo-medio">Complemento</label>
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="Complemento"
+							id="Complemento" 
+						placeholder="Complemento">
+					</div>
+				</div>	<!-- COMPLEMENTO -->
+
+				<div class="field">
+					<label class="titulo-medio">Bairro</label>
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="Bairro"
+							id="Bairro" 
+						placeholder="Bairro">
+					</div>
+				</div>	<!-- BAIRRO -->
+
+				<div class="field">
+					<label class="titulo-medio">Cidade</label>
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="Cidade"
+							id="Cidade" 
+						placeholder="Cidade">
+					</div>
+				</div>	<!-- CIDADE -->
+
+				<div class="field">
+					<label class="titulo-medio">E-mail</label>
 					<div class="ui large icon input">
 						<input 
 							type="text" 
@@ -48,6 +143,7 @@
 				</div>	<!-- ENDEREÇO EMAIL -->
 
 				<div class="field">
+					<label class="titulo-medio">Tipo de Cadastro</label>
 					<select 
 						class="ui dropdown" 
 						name="userType"
@@ -56,13 +152,11 @@
 
 						{{MNEMONICO_SELECT_USER_TYPE}}
 
-						<!-- <option value="">Sou um...</option>
-						<option value="A">Aluno</option>
-						<option value="P">Professor</option> -->
 					</select>
 				</div>	<!-- TIPO USUARIO -->
 
 				<div id="selectDisciplina" class="field hide">
+					<label class="titulo-medio">Dou aula de...</label>
 					<select 
 						class="ui fluid search dropdown" 
 						name="disciplina[]"
@@ -71,15 +165,22 @@
 
 						{{MNEMONICO_SELECT_DISCIPLINA}}
 
-						<!-- <option value="">Disciplinas</option>
-						<option value="*1*">Português</option>
-						<option value="*2*">Geografia</option>
-						<option value="*3*">Matemática</option>
-						<option value="*4*">História</option> -->
 					</select>
-				</div>	<!-- DISCIPLINA -->
+				</div>	<!-- DISCIPLINAS -->
 
 				<div class="field">
+					<label class="titulo-medio">Escola Formação Ensino Médio</label>
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="EscolaEnsinoMedio"
+							id="EscolaEnsinoMedio" 
+						placeholder="Escola Formação Ensino Médio">
+					</div>
+				</div>	<!-- CIDADE -->
+
+				<div class="field">
+					<label class="titulo-medio">Senha</label>
 					<div class="ui large icon input">
 						<input 
 							type="password" 
@@ -90,6 +191,7 @@
 				</div>	<!-- SENHA -->
 
 				<div class="field">
+					<label class="titulo-medio">Confirmação Senha</label>
 					<div class="ui large icon input">
 						<input 
 							type="password" 
@@ -99,11 +201,11 @@
 					</div>
 				</div>	<!-- CONFIRMACAO SENHA -->
 
-				<button 
+				<a 
 					class="ui large purple button" 
-					type="submit">
+					onclick="validaForm();">
 					Enviar
-				</button>
+				</a>
 
 				<input 
 					type="hidden" 
@@ -123,6 +225,27 @@
 
 <script>
 
+	function validaForm(){
+		var sNomeCompleto = $( "#NomeCompleto" ).val().toUpperCase();
+
+		window.alert( sNomeCompleto );
+	}
+
+	function getEndereco( sCEP ){
+		var url = ("https://viacep.com.br/ws/"  + sCEP +  "/json/");
+
+		var oLograd = $( "#Logradouro" );
+		var oBairro = $( "#Bairro" );
+		var oCidade = $( "#Cidade" );
+
+		$.get( url, function( data ){
+			var oResponse = eval( data );
+			oLograd.val( oResponse.logradouro );
+			oBairro.val( oResponse.bairro );
+			oCidade.val( oResponse.localidade );
+		} );
+	}
+
 	function checkNewUserType(){
 		var sCurrentUserType = $("#userType").val();
 		var oSelectDisciplinas = $( "#selectDisciplina" );
@@ -131,5 +254,10 @@
 		else
 			oSelectDisciplinas.addClass( "hide" );
 	}
+
+	$( "#CEP" ).mask( "99999-999" );
+	$( "#CPF" ).mask( "999.999.999-99" );
+
+	$( "#DataNascimento" ).mask( "99/99/99" );
 
 </script>

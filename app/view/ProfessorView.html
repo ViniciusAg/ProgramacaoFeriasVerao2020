@@ -29,3 +29,12 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function getNewStatus( oAluno ){
+		if ( oAluno.hasClass( "em-aula" ) )
+			oAluno.removeClass( "em-aula" );
+		else
+			oAluno.addClass( "em-aula" );
+	}
+</script>

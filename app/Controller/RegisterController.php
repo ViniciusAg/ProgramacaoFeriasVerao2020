@@ -65,8 +65,14 @@
 
             $htmVoltarIcon   = str_replace( 
             	"{{MNEMONICO_MENSAGEM_ICONE_LOGOUT}}", 
-            	"Fazer Login", 
+            	"Logar", 
             	$htmVoltarIcon 
+            );
+
+            $htmVoltarIcon = str_replace( 
+                "{{MNEMONICO_ICONE_LOGOUT_VOLTAR}}", 
+                "in", 
+                $htmVoltarIcon 
             );
 
             $htmRegisterView = str_replace( 
@@ -75,12 +81,16 @@
             	$htmRegisterView 
             );
 
-            $aDisciplinas = [];
+            $sSelectEtniaOptions        = "<option value='teste'>select etnia</option>";
+            $sSelectGeneroOptions       = "<option value='teste'>select genero</option>";
+            $sSelectEscolaridadeOptions = "<option value='teste'>select escolaridade</option>";
 
             $sSelectUserTypeOptions  = "";
             $sSelectUserTypeOptions .= "<option value=''>Sou um...</option>";
             $sSelectUserTypeOptions .= "<option value='P'>Professor</option>";
             $sSelectUserTypeOptions .= "<option value='A'>Aluno</option>";
+
+            $aDisciplinas = [];
 
             $oConsultaDb = new RegisterModel;
             $oConsultaDb->getDisciplinas( $aDisciplinas );
@@ -91,31 +101,35 @@
                 $sSelectDisciplinaOptions .= "<option>" . $item[ "nome" ] . "</option>";
             }
 
-            ////    desnecessário ??
+            $htmRegisterView = str_replace( 
+                "{{MNEMONICO_SELECT_ETNIA}}", 
+                $sSelectEtniaOptions, 
+                $htmRegisterView 
+            );  ////    Select Etnia
 
-            // $oConsultaDb->getTypesOfUsers( $aTypesOfUsers );
+            $htmRegisterView = str_replace( 
+                "{{MNEMONICO_SELECT_GENERO}}", 
+                $sSelectGeneroOptions, 
+                $htmRegisterView 
+            );  ////    Select Genero
 
-            // if ( ($aTypesOfUsers) && ($aTypesOfUsers->num_rows) ){
-            //     foreach( $aTypesOfUsers as $item ){
-            //         $sSelectUserTypeOptions .= "<option>" . $item[ "tipo" ] . "</option>";
-            //     }
-            // }
-
-            ////    desnecessário ?? final
-
-            // $sSelectDisciplinaOptions = "<option>this</option><option>is</option><option>a test</option>";
+            $htmRegisterView = str_replace( 
+                "{{MNEMONICO_SELECT_ESCOLARIDADE}}", 
+                $sSelectEscolaridadeOptions, 
+                $htmRegisterView 
+            );  ////    Select Escolaridade
 
             $htmRegisterView = str_replace( 
             	"{{MNEMONICO_SELECT_USER_TYPE}}", 
             	$sSelectUserTypeOptions, 
             	$htmRegisterView 
-            );
+            );  ////    Select Tipo Usuario
 
             $htmRegisterView = str_replace( 
             	"{{MNEMONICO_SELECT_DISCIPLINA}}", 
             	$sSelectDisciplinaOptions, 
             	$htmRegisterView 
-            );
+            );  //// Select Disciplinas
 
             echo $htmRegisterView;
         }
