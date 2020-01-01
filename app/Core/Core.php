@@ -37,7 +37,7 @@
                 $bNewRegister = true;            
         }   ////    Verifica Solicitação de Registro
 
-        private function verifyCurrentView( &$sCurrentView ){
+        private function verifyCurrentView( &$sCurrentView, &$bRegistrationSuccessfully ){
             $sCurrentView = filter_input( 
                 INPUT_POST, 
                 "CurrentView",
@@ -55,15 +55,20 @@
 
                 if ( $sNewRegisterForm == "true" ){
                     $oController = new RegisterController;
-                    $oController->verifyNewRegisterForm();
+                    $oController->verifyNewRegisterForm( $bRegistrationSuccessfully );
                 }   ////    Valida Form de Registro
             }
         }   ////    Identifica View do Form
 
-        private function getFormValues( &$bNewRegister, &$bLoggedUser, &$sCurrentView ){
+        private function getFormValues( 
+            &$bNewRegister, 
+            &$bLoggedUser, 
+            &$sCurrentView,
+            &$bRegistrationSuccessfully 
+        ){
             Core::verifyNewRegisterSolicitation( $bNewRegister );
             Core::verifyLoggoutSession( $bLoggedUser );
-            Core::verifyCurrentView( $sCurrentView );
+            Core::verifyCurrentView( $sCurrentView, $bRegistrationSuccessfully );
         }
 
         public function start( $htmEstruturaPage ){
@@ -71,8 +76,9 @@
         	$bLoggedUser  = isset( $_SESSION[ "tipo" ] );
 
             $bStatus      = false;
-            $bNewRegister = false;
-            // $bNewRegister = true;
+            // $bNewRegister = false;
+            $bNewRegister = true;
+            $bRegistrationSuccessfully = false;
 
         	$sLoginUser   = NULL;
         	$sLoginPass   = NULL;
@@ -81,10 +87,18 @@
         	$sController  = "LoginController";
         	$sAction      = "index";
 
-            Core::getFormValues( $bNewRegister, $bLoggedUser, $sCurrentView );
+            Core::getFormValues( 
+                $bNewRegister, 
+                $bLoggedUser, 
+                $sCurrentView,
+                $bRegistrationSuccessfully
+             );
 
             if ( $bNewRegister )
                 $sController = "RegisterController";
+
+            if ( $bRegistrationSuccessfully )
+                $sController = "LoginController";
 
         	if ( $bLoggedUser ){
         		Core::getMyController( $_SESSION[ "tipo" ], $sController );

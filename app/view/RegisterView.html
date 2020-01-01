@@ -3,7 +3,7 @@
 
 		{{MNEMONICO_ICON_VOLTAR}}
 
-		<div class="twelve wide mobile sixteen wide tablet eight wide computer column">
+		<div class="twelve wide mobile teen wide tablet eight wide computer column">
 			<form class="ui form" id="FormView" name="FormView" method="POST">
 
 				<div class="field">
@@ -13,6 +13,7 @@
 							type="text" 
 							name="NomeCompleto"
 							id="NomeCompleto" 
+							maxlength="80" 
 						placeholder="Nome Completo">
 					</div>
 				</div>	<!-- NOME COMPLETO -->
@@ -23,24 +24,27 @@
 						<input 
 							type="text" 
 							name="CPF"
-							id="CPF" 
+							id="CPF"
 						placeholder="CPF">
 					</div>
 				</div>	<!-- CPF -->
 
 				<div class="field">
-					<label class="titulo-medio">Data Nascimento</label>
-					<div class="ui large icon input">
-						<input 
-							type="text" 
-							name="DataNascimento"
-							id="DataNascimento" 
-						placeholder="DD/MM/AA">
+					<label class="titulo-medio">Data de Nascimento</label>
+					<div class="ui calendar" id="CalendarioDataNascimento">
+						<div class="ui input left icon">
+							<i class="calendar icon"></i>
+							<input 
+								type="text"
+								name="DataNascimento"
+								id="DataNascimento" 
+							placeholder="DD/MM/AAAA">
+						</div>
 					</div>
 				</div>	<!-- DATA NASCIMENTO -->
 
 				<div id="selectEtnia" class="field">
-					<label class="titulo-medio">Etnia</label>
+					<label class="titulo-medio">Como você se considera etnicamente?</label>
 					<select 
 						class="ui fluid search dropdown" 
 						name="UsuarioEtnia"
@@ -63,7 +67,18 @@
 					</select>
 				</div>	<!-- SELECT GENERO -->
 
-				<div id="selectGenero" class="field">
+				<div class="field">
+					<label class="titulo-medio">WhatsApp</label>
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="UsuarioTelefone"
+							id="UsuarioTelefone" 
+						placeholder="(99) 9 9999-9999">
+					</div>
+				</div>	<!-- CPF -->
+
+				<div id="selectEscolaridade" class="field">
 					<label class="titulo-medio">Escolaridade</label>
 					<select 
 						class="ui fluid search dropdown" 
@@ -97,6 +112,17 @@
 						placeholder="Logradouro">
 					</div>
 				</div>	<!-- LOGRADOURO -->
+
+				<div class="field">
+					<label class="titulo-medio">Número</label>
+					<div class="ui large icon input">
+						<input 
+							type="text" 
+							name="Numero"
+							id="Numero" 
+						placeholder="Número">
+					</div>
+				</div>	<!-- NUMERO -->
 
 				<div class="field">
 					<label class="titulo-medio">Complemento</label>
@@ -136,8 +162,8 @@
 					<div class="ui large icon input">
 						<input 
 							type="text" 
-							name="emailAdress"
-							id="emailAdress" 
+							name="EmailAdress"
+							id="EmailAdress" 
 						placeholder="Endereço E-mail">
 					</div>
 				</div>	<!-- ENDEREÇO EMAIL -->
@@ -146,21 +172,21 @@
 					<label class="titulo-medio">Tipo de Cadastro</label>
 					<select 
 						class="ui dropdown" 
-						name="userType"
+						name="TipoUsuario"
 						onchange="checkNewUserType();" 
-					id="userType">
+					id="TipoUsuario">
 
 						{{MNEMONICO_SELECT_USER_TYPE}}
 
 					</select>
 				</div>	<!-- TIPO USUARIO -->
 
-				<div id="selectDisciplina" class="field hide">
+				<div id="SelectDisciplina" class="field hide">
 					<label class="titulo-medio">Dou aula de...</label>
 					<select 
 						class="ui fluid search dropdown" 
-						name="disciplina[]"
-						id="disciplina" 
+						name="Disciplinas[]"
+						id="Disciplinas" 
 					multiple="">
 
 						{{MNEMONICO_SELECT_DISCIPLINA}}
@@ -168,8 +194,8 @@
 					</select>
 				</div>	<!-- DISCIPLINAS -->
 
-				<div class="field">
-					<label class="titulo-medio">Escola Formação Ensino Médio</label>
+				<div class="field hide" id="InputEscEnsinoMedio">
+					<label class="titulo-medio">Escola onde estuda ou estudou</label>
 					<div class="ui large icon input">
 						<input 
 							type="text" 
@@ -184,8 +210,8 @@
 					<div class="ui large icon input">
 						<input 
 							type="password" 
-							name="newPassword"
-							id="newPassword" 
+							name="UserPassword"
+							id="UserPassword" 
 						placeholder="Senha">
 					</div>
 				</div>	<!-- SENHA -->
@@ -195,8 +221,8 @@
 					<div class="ui large icon input">
 						<input 
 							type="password" 
-							name="reNewPassword"
-							id="reNewPassword" 
+							name="ReUserPassword"
+							id="ReUserPassword" 
 						placeholder="Confirmação Senha">
 					</div>
 				</div>	<!-- CONFIRMACAO SENHA -->
@@ -217,7 +243,7 @@
 					type="hidden" 
 					name="NewRegisterForm" 
 					id="NewRegisterForm" 
-				value="true">
+				value="false">
 			</form>
 		</div>
 	</div>
@@ -225,10 +251,115 @@
 
 <script>
 
-	function validaForm(){
-		var sNomeCompleto = $( "#NomeCompleto" ).val().toUpperCase();
+	function postNewUserRegister(){
+		// window.alert( "agora eu estaria gravando um novo usuario" );
+		$( "#NewRegisterForm" ).val( "true" );
+		$( "#FormView" ).submit();
+	}
 
-		window.alert( sNomeCompleto );
+	function appendMessageInputVazio( sNomeCampo, sMensagemErro ){
+		if ( (sMensagemErro == "") )
+			sMensagemErro += ("Campo " + sNomeCampo + " deve ser preenchido.");
+		else
+			sMensagemErro += ("\nCampo " + sNomeCampo + " deve ser preenchido.");
+		return sMensagemErro;
+	}
+
+	function formatDate( sDate ) {
+
+		var aDate = sDate.split( "/" );
+
+		var day = aDate[0];
+		var year = aDate[2];
+		var month = aDate[1];
+
+	    return [year, month, day].join('-');
+	}
+
+	function validaForm(){
+		var sNomeCompleto 	= $( "#NomeCompleto" ).val().toUpperCase();
+		var sCPF 			= $( "#CPF" ).val();
+		var sDataNascimento = $( "#DataNascimento" ).val();
+		var sEtnia 			= $( "#UsuarioEtnia" ).val();
+		var sGenero 		= $( "#UsuarioGenero" ).val();
+		var sUserTelefone	= $( "#UsuarioTelefone" ).val();
+		var sEscolaridade 	= $( "#UsuarioEscolaridade" ).val();
+		var sCEP 			= $( "#CEP" ).val();
+		var sLogradouro 	= $( "#Logradouro" ).val();
+		var sNumero 		= $( "#Numero" ).val();
+		var sComplemento 	= $( "#Complemento" ).val();
+		var sBairro 		= $( "#Bairro" ).val();
+		var sCidade 		= $( "#Cidade" ).val();
+		var sEmailAdress 	= $( "#EmailAdress" ).val();
+		var sTipoUsuario 	= $( "#TipoUsuario" ).val();
+		var sDisciplinas 	= $( "#Disciplinas" ).val();
+		var sEscEnsinoMedio = $( "#EscolaEnsinoMedio" ).val();
+
+		var sMensagemErro = "";
+
+		var sUserPassword 	= $( "#UserPassword" ).val();
+		sUserPassword = md5( sUserPassword );
+		var sReUserPassword = $( "#ReUserPassword" ).val();
+		sReUserPassword = md5( sReUserPassword );
+
+		if ( (sNomeCompleto == "") || (sNomeCompleto == null) )
+			sMensagemErro = appendMessageInputVazio( "NOME COMPLETO", sMensagemErro );
+		if ( (sCPF == "") || (sCPF == null) )
+			sMensagemErro = appendMessageInputVazio( "CPF", sMensagemErro );
+		if ( (sDataNascimento == "") || (sDataNascimento == null) )
+			sMensagemErro = appendMessageInputVazio( "DATA NASCIMENTO", sMensagemErro );
+		if ( (sEtnia == "") || (sEtnia == null) )
+			sMensagemErro = appendMessageInputVazio( "ETNIA", sMensagemErro );
+		if ( (sGenero == "") || (sGenero == null) )
+			sMensagemErro = appendMessageInputVazio( "GÊNERO", sMensagemErro );
+		if ( (sUserTelefone == "") || (sUserTelefone == null) )
+			sMensagemErro = appendMessageInputVazio( "WHATSAPP", sMensagemErro );
+		if ( (sEscolaridade == "") || (sEscolaridade == null) )
+			sMensagemErro = appendMessageInputVazio( "ESCOLARIDADE", sMensagemErro );
+
+		if ( (sCEP == "") || (sCEP == null) )
+			sMensagemErro = appendMessageInputVazio( "CEP", sMensagemErro );
+		if ( (sLogradouro == "") || (sLogradouro == null) )
+			sMensagemErro = appendMessageInputVazio( "LOGRADOURO", sMensagemErro );
+		if ( (sNumero == "") || (sNumero == null) )
+			sMensagemErro = appendMessageInputVazio( "NÚMERO", sMensagemErro );
+		if ( (sBairro == "") || (sBairro == null) )
+			sMensagemErro = appendMessageInputVazio( "BAIRRO", sMensagemErro );
+		if ( (sCidade == "") || (sCidade == null) )
+			sMensagemErro = appendMessageInputVazio( "CIDADE", sMensagemErro );
+
+		if ( (sEmailAdress == "") || (sEmailAdress == null) )
+			sMensagemErro = appendMessageInputVazio( "ENDEREÇO EMAIL", sMensagemErro );
+
+		if ( (sTipoUsuario == "") || (sTipoUsuario == null) )
+			sMensagemErro = appendMessageInputVazio( "TIPO DE CADASTRO", sMensagemErro );
+		if ( (sTipoUsuario == "P") && ((sDisciplinas == "") || (sDisciplinas == null)) )
+			sMensagemErro = appendMessageInputVazio( "DISCIPLINAS", sMensagemErro );
+		if ( (sTipoUsuario == "A") && ((sEscEnsinoMedio == "") || (sEscEnsinoMedio == null)) )
+			sMensagemErro = appendMessageInputVazio( "ESCOLA FORMAÇÃO ENSINO MÉDIO", sMensagemErro );
+
+		var formPreenchido = (sMensagemErro == "");
+
+		if ( ((sCPF != "") && (sCPF != null)) && (sCPF.length != 14)  )
+			if ( formPreenchido )
+				sMensagemErro += "\nFavor revisar o campo CPF.";
+
+		if ( ((sCEP != "") && (sCEP != null)) && (sCEP.length != 9)  )
+			if ( formPreenchido )
+				sMensagemErro += "\nFavor revisar o campo CEP.";
+
+		if ( sEmailAdress.indexOf( "@" ) == -1 )
+			if ( formPreenchido )
+				sMensagemErro += "\nFavor revisar o campo E-Mail.";
+
+		if ( sUserPassword != sReUserPassword )
+			if ( formPreenchido )
+				sMensagemErro += "\nAs senhas não conferem.";
+
+		if ( sMensagemErro != "" )
+			window.alert( sMensagemErro );
+		else
+			postNewUserRegister();
 	}
 
 	function getEndereco( sCEP ){
@@ -247,17 +378,41 @@
 	}
 
 	function checkNewUserType(){
-		var sCurrentUserType = $("#userType").val();
-		var oSelectDisciplinas = $( "#selectDisciplina" );
-		if( sCurrentUserType == "P" )
+		var sCurrentUserType 	 = $("#TipoUsuario").val();
+		var oSelectDisciplinas 	 = $( "#SelectDisciplina" );
+		var oInputEscEnsinoMedio = $( "#InputEscEnsinoMedio" );
+
+		if( sCurrentUserType == "P" ){
 			oSelectDisciplinas.removeClass( "hide" );
-		else
+			oInputEscEnsinoMedio.addClass( "hide" );
+		}else{
 			oSelectDisciplinas.addClass( "hide" );
+			oInputEscEnsinoMedio.removeClass( "hide" );
+		}
 	}
 
+	$( "#Numero" ).mask( "99999999" );
 	$( "#CEP" ).mask( "99999-999" );
 	$( "#CPF" ).mask( "999.999.999-99" );
+	$( "#UsuarioTelefone" ).mask( "(99) 9 9999-9999" );
 
-	$( "#DataNascimento" ).mask( "99/99/99" );
+	$( "#DataNascimento" ).mask( "99/99/9999" );
+
+	$( "#CalendarioDataNascimento" ).calendar( {
+		type: "date",
+		monthFirst: false,
+		formatter: {
+			type: "date",
+			date: function (date, settings) {
+				if (!date) return '';
+				var day = date.getDate();
+				day = ("00" + day).slice( -2 );
+				var month = date.getMonth() + 1;
+				month = ("00" + month).slice( -2 );
+				var year = date.getFullYear();
+				return day + '/' + month + '/' + year;
+			}
+		}
+	} );
 
 </script>

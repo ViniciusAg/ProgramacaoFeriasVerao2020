@@ -3,10 +3,10 @@
     class RegisterController{
     	private function setNewUser(){
     		// $oRequestNewUser = new RegisterModel;
-    		echo "eu deveria estar cadastrando um usuario";
+    		echo "<script>window.alert( 'Usuário cadastrado com sucesso! :)' )</script>";
     	}
     	
-    	public function verifyNewRegisterForm(){
+    	public function verifyNewRegisterForm( &$bRegistrationSuccessfully ){
             $sPrimeiroNome = filter_input( 
                 INPUT_POST, 
                 "firstName",
@@ -56,7 +56,12 @@
                 FILTER_FLAG_NO_ENCODE_QUOTES
             );
             
-            ////    falta validar formulario
+            $bFormValidado = true;
+
+            if ( $bFormValidado ){
+                RegisterController::setNewUser();
+                $bRegistrationSuccessfully = true;
+            }
         }
 
         public function index(){
@@ -81,25 +86,40 @@
             	$htmRegisterView 
             );
 
-            $sSelectEtniaOptions        = "<option value='teste'>select etnia</option>";
-            $sSelectGeneroOptions       = "<option value='teste'>select genero</option>";
-            $sSelectEscolaridadeOptions = "<option value='teste'>select escolaridade</option>";
-
             $sSelectUserTypeOptions  = "";
             $sSelectUserTypeOptions .= "<option value=''>Sou um...</option>";
-            $sSelectUserTypeOptions .= "<option value='P'>Professor</option>";
-            $sSelectUserTypeOptions .= "<option value='A'>Aluno</option>";
-
-            $aDisciplinas = [];
+            $sSelectUserTypeOptions .= "<option value='Professor'>Professor</option>";
+            $sSelectUserTypeOptions .= "<option value='Aluno'>Aluno</option>";
 
             $oConsultaDb = new RegisterModel;
+
+            $aEtnias = [];
+            $oConsultaDb->getEtnias( $aEtnias );
+            $sSelectEtniaOptions =      "<option value=''>Etnia</option>";
+            foreach( $aEtnias as $item ){
+                $sSelectEtniaOptions .= "<option>" . $item[ "nome" ] . "</option>";
+            }   ////    Consulta DataBase Etnias
+
+            $aGenero = [];
+            $oConsultaDb->getGenero( $aGenero );
+            $sSelectGeneroOptions =      "<option value=''>Gênero</option>";
+            foreach( $aGenero as $item ){
+                $sSelectGeneroOptions .= "<option>" . $item[ "nome" ] . "</option>";
+            }   ////    Consulta DataBase Genero
+
+            $aEscolaridade = [];
+            $oConsultaDb->getEscolaridade( $aEscolaridade );
+            $sSelectEscolaridadeOptions =      "<option value=''>Escolaridade</option>";
+            foreach( $aEscolaridade as $item ){
+                $sSelectEscolaridadeOptions .= "<option>" . $item[ "nome" ] . "</option>";
+            }   ////    Consulta DataBase Escolaridade
+
+            $aDisciplinas = [];
             $oConsultaDb->getDisciplinas( $aDisciplinas );
-
-            $sSelectDisciplinaOptions = "<option value=''>Disciplinas</option>";
-
+            $sSelectDisciplinaOptions =     "<option value=''>Disciplinas</option>";
             foreach( $aDisciplinas as $item ){
                 $sSelectDisciplinaOptions .= "<option>" . $item[ "nome" ] . "</option>";
-            }
+            }   ////    Consulta DataBase Disciplinas
 
             $htmRegisterView = str_replace( 
                 "{{MNEMONICO_SELECT_ETNIA}}", 

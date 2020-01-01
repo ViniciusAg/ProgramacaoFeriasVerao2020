@@ -1,0 +1,72 @@
+cadastro_usuarios
+	id		int4
+	nomeCompleto	varchar80
+	cpf		char14
+	dataNascimento	date
+	anoMatricula	char4
+
+	etnia		int4
+	genero		int4
+	escolaridade	int4
+
+	cep		char9
+	logradouro	varchar80
+	numero		varchar8
+	complemento	varchar80	NULL
+	bairro		varchar80
+	cidade		varchar80
+	Email		varchar80
+
+	tipoUsuario	int4
+
+	usuarioSenha	varchar80
+	reUsuarioSenha	varchar80
+
+	ensinoMedio	varchar80
+
+#	query
+
+CREATE TABLE `programacaoferiasverao2020`.`cadastro_usuarios` ( `id` INT(4) NOT NULL AUTO_INCREMENT , `nome` VARCHAR(80) NOT NULL , `cpf` CHAR(14) NOT NULL , `data_nascimento` DATE NOT NULL , `ano_matricula` YEAR NOT NULL , `etnia` INT(4) NOT NULL , `genero` INT(4) NOT NULL , `escolaridade` INT(4) NOT NULL , `cep` CHAR(9) NOT NULL , `logradouro` VARCHAR(80) NOT NULL , `numero` VARCHAR(8) NOT NULL , `complemento` VARCHAR(80) NOT NULL , `bairro` VARCHAR(80) NOT NULL , `cidade` VARCHAR(80) NOT NULL , `email` VARCHAR(80) NOT NULL , `tipo_usuario` INT(4) NOT NULL , `senha` VARCHAR(80) NOT NULL , `re_senha` VARCHAR(80) NOT NULL , PRIMARY KEY (`id`(4))) ENGINE = MyISAM;
+
+#	query final
+
+#	query cadastro
+
+INSERT INTO `cadastro_usuarios` (`id`, `nome`, `cpf`, `data_nascimento`, `ano_matricula`, `etnia`, `genero`, `escolaridade`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `email`, `tipo_usuario`, `senha`, `re_senha`) VALUES (NULL, 'JÔNATA WILLIAN PEREIRA DA SILVA', '468.849.618-48', '1997-02-25', '2019', '0', '0', '0', '09290-010', 'Rua Ipiranga', '416', 'Casa 02', 'Pq João Ramalho', 'Santo André', 'newillianpereira@gmail.com', '0', '202cb962ac59075b964b07152d234b70', '202cb962ac59075b964b07152d234b70');
+
+#	query cadastro final
+
+cadastro_geral
+	id	int4
+	nome	varchar80
+
+#	query
+
+CREATE TABLE `programacaoferiasverao2020`.`cadastros_gerais` ( `id` INT NOT NULL AUTO_INCREMENT , `nome` VARCHAR(80) NOT NULL , PRIMARY KEY (`id`(4))) ENGINE = MyISAM;
+
+#	query final
+
+tipos_cadastros
+	id	int4
+	nome	varchar80
+
+#	query
+
+INSERT INTO `tipos_cadastros` (`id`, `nome`) VALUES (NULL, 'disciplina'), (NULL, 'tipo_usuario');
+
+#	query final
+
+usuario_x_disciplinas
+	id		int4
+	usuario		int4
+	disciplina	int4
+
+aulas_dadas
+	id		int4
+	data		date
+	aluno		int4
+	professor	int4
+	disciplina	int4
+
+
+	
