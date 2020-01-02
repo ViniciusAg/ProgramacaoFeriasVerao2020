@@ -4,14 +4,14 @@
         public function login( &$sLoginUser, &$sLoginPass, &$bStatus, &$sUserType ){
             $sLoginUser = filter_input( 
                 INPUT_POST, 
-                "loginUser", 
+                "EmailUsuario", 
                 FILTER_SANITIZE_STRING,
                 FILTER_FLAG_NO_ENCODE_QUOTES
             );
 
             $sLoginPass = filter_input( 
                 INPUT_POST, 
-                "loginPass", 
+                "SenhaUsuario", 
                 FILTER_SANITIZE_STRING,
                 FILTER_FLAG_NO_ENCODE_QUOTES
             ); $bIniciouSessao = false;
@@ -23,8 +23,11 @@
                 $sEvaluated = $oRequestLogin->fetch_assoc();
 
                 $_SESSION[ "id" ] = $sEvaluated[ "id" ];
-                $_SESSION[ "tipo" ] = $sEvaluated[ "tipo" ];
-                $sUserType = $sEvaluated[ "tipo" ];
+                $_SESSION[ "id_tipo_usuario" ] = $sEvaluated[ "id_tipo_usuario" ];
+                $_SESSION[ "id_status" ] = $sEvaluated[ "id_status" ];
+                $_SESSION[ "nome" ] = $sEvaluated[ "nome" ];
+                $_SESSION[ "whatsapp" ] = $sEvaluated[ "whatsapp" ];
+                $sUserType = $sEvaluated[ "id_tipo_usuario" ];
 
                 $bStatus = true;
             }

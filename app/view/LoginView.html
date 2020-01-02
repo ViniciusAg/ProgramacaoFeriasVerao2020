@@ -6,15 +6,17 @@
 					<div class="ui large icon input">
 						<input 
 							type="text" 
-							name="loginUser" 
-						placeholder="Login">
+							name="EmailUsuario" 
+							id="EmailUsuario"
+						placeholder="Email">
 					</div>
 				</div>
 				<div class="field">
 					<div class="ui large icon input">
 						<input 
 							type="password" 
-							name="loginPass" 
+							name="SenhaUsuario" 
+							id="SenhaUsuario"
 						placeholder="Senha">
 					</div>
 				</div>
@@ -41,4 +43,9 @@
 		$( "#getNewRegister" ).val( "true" );
        	$( "#FormView" ).submit();
     }
+
+	function loginWithUserTest(){
+		$( "#EmailUsuario" ).val( "email@email.com" );
+		$( "#SenhaUsuario" ).val( "123" );
+	}	////	loginWithUserTest();
 </script>

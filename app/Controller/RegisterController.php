@@ -1,66 +1,56 @@
 <?php
 
     class RegisterController{
-    	private function setNewUser(){
-    		// $oRequestNewUser = new RegisterModel;
-    		echo "<script>window.alert( 'Usuário cadastrado com sucesso! :)' )</script>";
-    	}
-    	
+
     	public function verifyNewRegisterForm( &$bRegistrationSuccessfully ){
-            $sPrimeiroNome = filter_input( 
+            $aValuesFromPostFormToCheck = [
+                "NomeCompleto"        => NULL,
+                "CPF"                 => NULL,
+                "DataNascimento"      => NULL,
+                "UsuarioEtnia"        => NULL,
+                "UsuarioGenero"       => NULL,
+                "UsuarioTelefone"     => NULL,
+                "UsuarioEscolaridade" => NULL,
+                "CEP"                 => NULL,
+                "Logradouro"          => NULL,
+                "Numero"              => NULL,
+                "Complemento"         => NULL,
+                "Bairro"              => NULL,
+                "Cidade"              => NULL,
+                "EmailAdress"         => NULL,
+                "TipoUsuario"         => NULL,
+                "Disciplinas"         => NULL,
+                "EscolaEnsinoMedio"   => NULL,
+                "UserPassword"        => NULL,
+                "ReUserPassword"      => NULL
+            ]; $oCore = new Core;
+            $oCore->getThoseTextValuesFromPostForm( $aValuesFromPostFormToCheck );
+
+            $aDisciplinas = filter_input( 
                 INPUT_POST, 
-                "firstName",
+                "Disciplinas",
                 FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            );
-        	$sUltimoNome = filter_input( 
+                FILTER_REQUIRE_ARRAY
+            ); $aValuesFromPostFormToCheck[ "Disciplinas" ] = $aDisciplinas;
+
+            $sEmailAdress = filter_input( 
                 INPUT_POST, 
-                "lastName",
+                "EmailAdress",
                 FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            );
-        	$sNumeroRG = filter_input( 
-                INPUT_POST, 
-                "rgNumber",
-                FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            );
-        	$sEnderecoEmail = filter_input( 
-                INPUT_POST, 
-                "emailAdress",
-                FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            );
-        	$sTipoUsuario = filter_input( 
-                INPUT_POST, 
-                "userType",
-                FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            );
-        	$aDisciplinas = filter_input( 
-                INPUT_POST, 
-                "disciplina[]",
-                FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            );
-        	$sSenha = filter_input( 
-                INPUT_POST, 
-                "newPassword",
-                FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            );
-        	$sReSenha = filter_input( 
-                INPUT_POST, 
-                "reNewPassword",
-                FILTER_SANITIZE_STRING,
-                FILTER_FLAG_NO_ENCODE_QUOTES
-            );
+                FILTER_SANITIZE_EMAIL
+            ); $aValuesFromPostFormToCheck[ "EmailAdress" ] = $sEmailAdress;
+
+            ////    Validacao Form
+
+            
+
+            ////    Validacao Form Final
             
             $bFormValidado = true;
 
             if ( $bFormValidado ){
-                RegisterController::setNewUser();
-                $bRegistrationSuccessfully = true;
+                $oRegisterModel = new RegisterModel;
+                $oRegisterModel->setNewUser( $aValuesFromPostFormToCheck, $bRegistrationSuccessfully );
             }
         }
 
@@ -88,37 +78,45 @@
 
             $sSelectUserTypeOptions  = "";
             $sSelectUserTypeOptions .= "<option value=''>Sou um...</option>";
-            $sSelectUserTypeOptions .= "<option value='Professor'>Professor</option>";
-            $sSelectUserTypeOptions .= "<option value='Aluno'>Aluno</option>";
+            $sSelectUserTypeOptions .= "<option value='7'>Professor</option>";
+            $sSelectUserTypeOptions .= "<option value='8'>Aluno</option>";
 
             $oConsultaDb = new RegisterModel;
 
-            $aEtnias = [];
-            $oConsultaDb->getEtnias( $aEtnias );
+            $aEtnias = "etnia";
+            $oConsultaDb->getItemInCadastrosGeraisById_Tipo( $aEtnias );
             $sSelectEtniaOptions =      "<option value=''>Etnia</option>";
             foreach( $aEtnias as $item ){
-                $sSelectEtniaOptions .= "<option>" . $item[ "nome" ] . "</option>";
+                $sSelectEtniaOptions .= "<option value='" . $item[ "id" ] . "'>";
+                $sSelectEtniaOptions .=     $item[ "nome" ];
+                $sSelectEtniaOptions .= "</option>";
             }   ////    Consulta DataBase Etnias
 
-            $aGenero = [];
-            $oConsultaDb->getGenero( $aGenero );
+            $aGenero = "genero";
+            $oConsultaDb->getItemInCadastrosGeraisById_Tipo( $aGenero );
             $sSelectGeneroOptions =      "<option value=''>Gênero</option>";
             foreach( $aGenero as $item ){
-                $sSelectGeneroOptions .= "<option>" . $item[ "nome" ] . "</option>";
+                $sSelectGeneroOptions .= "<option value='" . $item[ "id" ] . "'>";
+                $sSelectGeneroOptions .=     $item[ "nome" ];
+                $sSelectGeneroOptions .= "</option>";
             }   ////    Consulta DataBase Genero
 
-            $aEscolaridade = [];
-            $oConsultaDb->getEscolaridade( $aEscolaridade );
+            $aEscolaridade = "escolaridade";
+            $oConsultaDb->getItemInCadastrosGeraisById_Tipo( $aEscolaridade );
             $sSelectEscolaridadeOptions =      "<option value=''>Escolaridade</option>";
             foreach( $aEscolaridade as $item ){
-                $sSelectEscolaridadeOptions .= "<option>" . $item[ "nome" ] . "</option>";
+                $sSelectEscolaridadeOptions .= "<option value='" . $item[ "id" ] . "'>";
+                $sSelectEscolaridadeOptions .=     $item[ "nome" ];
+                $sSelectEscolaridadeOptions .= "</option>";
             }   ////    Consulta DataBase Escolaridade
 
-            $aDisciplinas = [];
-            $oConsultaDb->getDisciplinas( $aDisciplinas );
+            $aDisciplinas = "disciplina";
+            $oConsultaDb->getItemInCadastrosGeraisById_Tipo( $aDisciplinas );
             $sSelectDisciplinaOptions =     "<option value=''>Disciplinas</option>";
             foreach( $aDisciplinas as $item ){
-                $sSelectDisciplinaOptions .= "<option>" . $item[ "nome" ] . "</option>";
+                $sSelectDisciplinaOptions .= "<option value='" . $item[ "id" ] . "'>";
+                $sSelectDisciplinaOptions .=     $item[ "nome" ];
+                $sSelectDisciplinaOptions .= "</option>";
             }   ////    Consulta DataBase Disciplinas
 
             $htmRegisterView = str_replace( 

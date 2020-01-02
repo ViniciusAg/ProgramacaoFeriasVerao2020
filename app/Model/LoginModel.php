@@ -7,14 +7,16 @@
             $oDbLink = $oDbLink->start();
             $oRes = NULL;
 
-            // if ( ($sLoginPass > "") && ($sLoginUser > "") ){
-            if ( $sLoginPass > "" ){
+            $sLoginUser = mysqli_real_escape_string( $oDbLink, $sLoginUser );
+            $sLoginUser = mysqli_real_escape_string( $oDbLink, $sLoginUser );
+
+            if ( ($sLoginPass > "") && ($sLoginUser > "") ){
                 $sEcrypted = md5( $sLoginPass );
 
-                // $sQuery  = "select * from cadastros ";
-                // $sQuery .= "where ( rg = ". $sLoginUser ." ) and ( senha = '". $sEcrypted ."' )";
+                $sColunas = "`id`, `id_tipo_usuario`, `id_status`, `nome`, `whatsapp`";
 
-                $sQuery  = "select * from cadastros where ( senha = '" . $sEcrypted . "' )";
+                $sQuery  = "SELECT " . $sColunas . " FROM cadastros_usuarios ";
+                $sQuery .= "WHERE ( email = '" . $sLoginUser . "' ) AND ( senha = '" . $sEcrypted . "' )";
 
                 $oRes = $oDbLink->query( $sQuery );
             } return $oRes;

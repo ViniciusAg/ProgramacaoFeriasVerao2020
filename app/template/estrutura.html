@@ -21,8 +21,6 @@
     .titulo-medio {
         font-size: 125% !important;
         color: purple !important;
-        /*margin: 0 17rem 0.5rem 0 !important;*/
-        /*background-color: blue;*/
         text-align: left;
     }
 
@@ -34,6 +32,15 @@
         background-color: #c5df87 !important;
         color: #212121 !important;
     }
+
+    .caixa-alta { 
+        text-transform: uppercase;
+    }
+
+    .caixa-baixa { 
+        text-transform: lowercase;
+    }
+
 </style>
 <html>
     <head>
@@ -63,6 +70,10 @@
         {{CONTENT}}
 
     </body>
+
+    <br/>
+    <br/>
+    <br/>
 </html>
 
 <script>
@@ -72,4 +83,8 @@
         $( "#LogOutSession" ).val( "true" );
         $( "#FormView" ).submit();
     }
+
+    $('input[type=text]').val (function () {
+        return this.value.toUpperCase();
+    })
 </script>

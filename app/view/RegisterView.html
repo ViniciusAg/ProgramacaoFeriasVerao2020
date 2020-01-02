@@ -11,9 +11,11 @@
 					<div class="ui large icon input">
 						<input 
 							type="text" 
+							class="caixa-alta"
 							name="NomeCompleto"
 							id="NomeCompleto" 
 							maxlength="80" 
+							onchange="formatToUpperCase( this );" 
 						placeholder="Nome Completo">
 					</div>
 				</div>	<!-- NOME COMPLETO -->
@@ -38,7 +40,7 @@
 								type="text"
 								name="DataNascimento"
 								id="DataNascimento" 
-							placeholder="DD/MM/AAAA">
+							placeholder="Para alterar ano clicar nele">
 						</div>
 					</div>
 				</div>	<!-- DATA NASCIMENTO -->
@@ -76,7 +78,7 @@
 							id="UsuarioTelefone" 
 						placeholder="(99) 9 9999-9999">
 					</div>
-				</div>	<!-- CPF -->
+				</div>	<!-- WHATSAPP -->
 
 				<div id="selectEscolaridade" class="field">
 					<label class="titulo-medio">Escolaridade</label>
@@ -107,8 +109,10 @@
 					<div class="ui large icon input">
 						<input 
 							type="text" 
+							class="caixa-alta"
 							name="Logradouro"
 							id="Logradouro" 
+							onchange="formatToUpperCase( this );" 
 						placeholder="Logradouro">
 					</div>
 				</div>	<!-- LOGRADOURO -->
@@ -129,8 +133,10 @@
 					<div class="ui large icon input">
 						<input 
 							type="text" 
+							class="caixa-alta"
 							name="Complemento"
 							id="Complemento" 
+							onchange="formatToUpperCase( this );"
 						placeholder="Complemento">
 					</div>
 				</div>	<!-- COMPLEMENTO -->
@@ -140,8 +146,10 @@
 					<div class="ui large icon input">
 						<input 
 							type="text" 
+							class="caixa-alta"
 							name="Bairro"
 							id="Bairro" 
+							onchange="formatToUpperCase( this );"
 						placeholder="Bairro">
 					</div>
 				</div>	<!-- BAIRRO -->
@@ -151,8 +159,10 @@
 					<div class="ui large icon input">
 						<input 
 							type="text" 
+							class="caixa-alta"
 							name="Cidade"
 							id="Cidade" 
+							onchange="formatToUpperCase( this );"
 						placeholder="Cidade">
 					</div>
 				</div>	<!-- CIDADE -->
@@ -162,8 +172,10 @@
 					<div class="ui large icon input">
 						<input 
 							type="text" 
+							class="caixa-baixa" 
 							name="EmailAdress"
 							id="EmailAdress" 
+							onchange="checkEmailAdress( this );" 
 						placeholder="Endereço E-mail">
 					</div>
 				</div>	<!-- ENDEREÇO EMAIL -->
@@ -199,11 +211,13 @@
 					<div class="ui large icon input">
 						<input 
 							type="text" 
+							class="caixa-alta"
 							name="EscolaEnsinoMedio"
 							id="EscolaEnsinoMedio" 
+							onchange="formatToUpperCase( this );"
 						placeholder="Escola Formação Ensino Médio">
 					</div>
-				</div>	<!-- CIDADE -->
+				</div>	<!-- ESCOLA ENSINO MEDIO -->
 
 				<div class="field">
 					<label class="titulo-medio">Senha</label>
@@ -228,10 +242,16 @@
 				</div>	<!-- CONFIRMACAO SENHA -->
 
 				<a 
-					class="ui large purple button" 
+					class="ui big purple button" 
 					onclick="validaForm();">
 					Enviar
 				</a>
+
+				<input 
+					type="hidden" 
+					name="RequestFromAjax" 
+					id="RequestFromAjax" 
+				value="false">
 
 				<input 
 					type="hidden" 
@@ -251,10 +271,34 @@
 
 <script>
 
-	function postNewUserRegister(){
-		// window.alert( "agora eu estaria gravando um novo usuario" );
-		$( "#NewRegisterForm" ).val( "true" );
-		$( "#FormView" ).submit();
+	function checkEmailAdress( input ){
+		formatToLowerCase( input );
+		var sAdress = $( input ).val();
+		if ( sAdress != "" ){
+			var url = ("http://programacaoferiasverao2020/?RequestFromAjax=true&EmailAdress=" + sAdress);
+
+			$.get( url, function( data ){
+				var oResponse = JSON.parse( eval( data ) );
+				console.log( ( oResponse ) );
+				if ( !(oResponse.EmailValido) ){
+					window.alert( "Email já cadastrado anteriormente." );
+				}
+			} );
+		}
+	}
+
+	function formatToUpperCase( input ){
+		var sUpperCased = $( input ).val().toUpperCase();
+		sUpperCased = sUpperCased.replace(/"/g, "");
+		sUpperCased = sUpperCased.replace(/'/g, "");
+		$( input ).val( sUpperCased );
+	}
+
+	function formatToLowerCase( input ){
+		var sUpperCased = $( input ).val().toLowerCase();
+		sUpperCased = sUpperCased.replace(/"/g, "");
+		sUpperCased = sUpperCased.replace(/'/g, "");
+		$( input ).val( sUpperCased );
 	}
 
 	function appendMessageInputVazio( sNomeCampo, sMensagemErro ){
@@ -277,7 +321,8 @@
 	}
 
 	function validaForm(){
-		var sNomeCompleto 	= $( "#NomeCompleto" ).val().toUpperCase();
+
+		var sNomeCompleto 	= $( "#NomeCompleto" ).val();
 		var sCPF 			= $( "#CPF" ).val();
 		var sDataNascimento = $( "#DataNascimento" ).val();
 		var sEtnia 			= $( "#UsuarioEtnia" ).val();
@@ -294,13 +339,10 @@
 		var sTipoUsuario 	= $( "#TipoUsuario" ).val();
 		var sDisciplinas 	= $( "#Disciplinas" ).val();
 		var sEscEnsinoMedio = $( "#EscolaEnsinoMedio" ).val();
+		var sUserPassword   = $( "#UserPassword" ).val();
+		var sReUserPassword = $( "#ReUserPassword" ).val();
 
 		var sMensagemErro = "";
-
-		var sUserPassword 	= $( "#UserPassword" ).val();
-		sUserPassword = md5( sUserPassword );
-		var sReUserPassword = $( "#ReUserPassword" ).val();
-		sReUserPassword = md5( sReUserPassword );
 
 		if ( (sNomeCompleto == "") || (sNomeCompleto == null) )
 			sMensagemErro = appendMessageInputVazio( "NOME COMPLETO", sMensagemErro );
@@ -338,6 +380,12 @@
 		if ( (sTipoUsuario == "A") && ((sEscEnsinoMedio == "") || (sEscEnsinoMedio == null)) )
 			sMensagemErro = appendMessageInputVazio( "ESCOLA FORMAÇÃO ENSINO MÉDIO", sMensagemErro );
 
+		if ( (sUserPassword == "") || (sUserPassword == null) )
+			sMensagemErro = appendMessageInputVazio( "SENHA", sMensagemErro );
+
+		sUserPassword   = md5( $( "#UserPassword" ).val() );
+		sReUserPassword = md5( $( "#ReUserPassword" ).val() );
+
 		var formPreenchido = (sMensagemErro == "");
 
 		if ( ((sCPF != "") && (sCPF != null)) && (sCPF.length != 14)  )
@@ -356,10 +404,16 @@
 			if ( formPreenchido )
 				sMensagemErro += "\nAs senhas não conferem.";
 
-		if ( sMensagemErro != "" )
+		if ( sMensagemErro != "" ){
 			window.alert( sMensagemErro );
-		else
-			postNewUserRegister();
+		}
+		else{
+			$( "#DataNascimento" ).val( formatDate( sDataNascimento ) );
+			$( "#UserPassword" ).val( sUserPassword );
+			$( "#ReUserPassword" ).val( sReUserPassword );
+			$( "#NewRegisterForm" ).val( "true" );
+			$( "#FormView" ).submit();
+		}
 	}
 
 	function getEndereco( sCEP ){
@@ -371,9 +425,9 @@
 
 		$.get( url, function( data ){
 			var oResponse = eval( data );
-			oLograd.val( oResponse.logradouro );
-			oBairro.val( oResponse.bairro );
-			oCidade.val( oResponse.localidade );
+			oLograd.val( oResponse.logradouro.toUpperCase() );
+			oBairro.val( oResponse.bairro.toUpperCase() );
+			oCidade.val( oResponse.localidade.toUpperCase() );
 		} );
 	}
 
@@ -382,7 +436,7 @@
 		var oSelectDisciplinas 	 = $( "#SelectDisciplina" );
 		var oInputEscEnsinoMedio = $( "#InputEscEnsinoMedio" );
 
-		if( sCurrentUserType == "P" ){
+		if( sCurrentUserType == "7" ){
 			oSelectDisciplinas.removeClass( "hide" );
 			oInputEscEnsinoMedio.addClass( "hide" );
 		}else{
@@ -414,5 +468,25 @@
 			}
 		}
 	} );
+
+	function simulaFormPreenchido(){
+		$( "#NomeCompleto" ).val( "JOAO TESTE" );
+		$( "#CPF" ).val( "999.999.999-99" );
+		$( "#DataNascimento" ).val( "01/01/1997" );
+		$( "#UsuarioEtnia" ).val( 11 );
+		$( "#UsuarioGenero" ).val( 13 );
+		$( "#UsuarioTelefone" ).val( "(99) 9 9999-9999" );
+		$( "#UsuarioEscolaridade" ).val( 17 );
+		$( "#CEP" ).val( "99999-999" );
+		$( "#Logradouro" ).val( "RUA TESTE" );
+		$( "#Numero" ).val( 99 );
+		$( "#Complemento" ).val( "APTO TESTE" );
+		$( "#Bairro" ).val( "BAIRRO TESTE" );
+		$( "#Cidade" ).val( "CIDADE TESTE" );
+		$( "#EmailAdress" ).val( "email@email.com" );
+		$( "#TipoUsuario" ).val( 7 );
+		$( "#Disciplinas" ).val( [1, 2, 3 ] );
+		$( "#EscolaEnsinoMedio" ).val( "EMEIEF" );
+	}////simulaFormPreenchido();
 
 </script>

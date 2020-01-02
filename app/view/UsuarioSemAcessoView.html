@@ -1,0 +1,33 @@
+<div class="ui container" style="padding-top: 3vh">
+
+	{{MNEMONICO_ICON_LOGOUT}}
+
+	<div class="ui one column middle center aligned grid">
+		<div class="sixteen wide mobile eight wide tablet eight wide computer column">
+
+			<h1>Olá, {{MNEMONICO_NOME_USUARIO}}! Falta pouco, sua inscrição ainda precisa ser verificada</h1>
+			<br/>
+			<h2>Entraremos em contato com você em breve pelo número {{MNEMONICO_TELEFONE_USUARIO}}</h2>
+			<br/>
+			<h2>Obrigado pelo interesse!</h2>
+			<br/>
+			<h1>Status da inscrição {{MNEMONICO_STATUS_USUARIO}}</h1>
+			
+		</div>
+	</div>
+
+	<form id="FormView" name="FormView" method="POST">
+
+		{{MNEMONICO_INPUT_LOGOUT}}
+
+	</form>
+</div>
+
+<script>
+	function getNewStatus( oAluno ){
+		if ( oAluno.hasClass( "em-aula" ) )
+			oAluno.removeClass( "em-aula" );
+		else
+			oAluno.addClass( "em-aula" );
+	}
+</script>

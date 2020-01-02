@@ -1,13 +1,50 @@
 <?php
 
     class Core{
+        public function getThoseTextValuesFromPostForm( &$aInputNames ){
+            $aKeysOfaInputNames = array_keys( $aInputNames );
+
+            foreach ( $aKeysOfaInputNames as $item) {
+                $aInputNames[ $item ] = filter_input( 
+                    INPUT_POST, 
+                    $item,
+                    FILTER_SANITIZE_STRING,
+                    FILTER_FLAG_NO_ENCODE_QUOTES
+                );
+            }
+        }
+
     	private function getMyController( $sTipo, &$sController ){
-    		if ( $sTipo == "X" )
+            $aTiposDeUsuario = "tipo_usuario";
+            $sTypeOfLoggedUser = NULL;
+
+            $oRegisterModel = new RegisterModel;
+            $oRegisterModel->getItemInCadastrosGeraisById_Tipo( $aTiposDeUsuario );
+
+            foreach( $aTiposDeUsuario as $key => $value ){
+                if ( $value[ "id" ] == $sTipo )
+                    $sTypeOfLoggedUser = $value[ "nome" ];
+            }
+
+    		if ( $sTypeOfLoggedUser == "Administrador" )
                 $sController = "AdminController";
-            if ( $sTipo == "A" )
+            if ( $sTypeOfLoggedUser == "Aluno" )
                 $sController = "AlunoController";
-            if ( $sTipo == "P" )
+            if ( $sTypeOfLoggedUser == "Professor" )
                 $sController = "ProfessorController";
+
+            $sNameOfRegisterWhatWeWant = "status";
+            $oRegisterModel = new RegisterModel;
+            $oRegisterModel->getItemInTiposCadastrosByNome( $sNameOfRegisterWhatWeWant );
+            $oRegisterModel->getItemInCadastrosGeraisById_Tipo( $sNameOfRegisterWhatWeWant );
+
+            foreach ($sNameOfRegisterWhatWeWant as $key => $value) {
+                if ( $_SESSION[ "id_status" ] == $value[ "id" ] )
+                    if ( $value[ "nome" ] == "Aguardando Confirmação" ){
+                        $sController = "UsuarioSemAcessoController";
+                        $_SESSION[ "StatusDescricao" ] = "Aguardando Confirmação";
+                    }
+            }
     	}  ////    Identifica Controller da Sessão 
 
         private function verifyLoggoutSession( &$bLoggedUser ){
@@ -46,38 +83,27 @@
             );
 
             if ( $sCurrentView == "RegisterView" ){
-                $sNewRegisterForm = filter_input( 
+                $sSendingNewRegisterForm = filter_input( 
                     INPUT_POST, 
                     "NewRegisterForm",
                     FILTER_SANITIZE_STRING,
                     FILTER_FLAG_NO_ENCODE_QUOTES
                 );
 
-                if ( $sNewRegisterForm == "true" ){
+                if ( $sSendingNewRegisterForm == "true" ){
                     $oController = new RegisterController;
                     $oController->verifyNewRegisterForm( $bRegistrationSuccessfully );
                 }   ////    Valida Form de Registro
             }
         }   ////    Identifica View do Form
 
-        private function getFormValues( 
-            &$bNewRegister, 
-            &$bLoggedUser, 
-            &$sCurrentView,
-            &$bRegistrationSuccessfully 
-        ){
-            Core::verifyNewRegisterSolicitation( $bNewRegister );
-            Core::verifyLoggoutSession( $bLoggedUser );
-            Core::verifyCurrentView( $sCurrentView, $bRegistrationSuccessfully );
-        }
-
         public function start( $htmEstruturaPage ){
         	$bLoggedUser  = false;
-        	$bLoggedUser  = isset( $_SESSION[ "tipo" ] );
+        	$bLoggedUser  = isset( $_SESSION[ "id_tipo_usuario" ] );
 
             $bStatus      = false;
-            // $bNewRegister = false;
-            $bNewRegister = true;
+            $bNewRegister = false;
+            // $bNewRegister = true;    ////    Carrega Tela Cadastro
             $bRegistrationSuccessfully = false;
 
         	$sLoginUser   = NULL;
@@ -85,14 +111,11 @@
             $sCurrentView = NULL;
 
         	$sController  = "LoginController";
-        	$sAction      = "index";
-
-            Core::getFormValues( 
-                $bNewRegister, 
-                $bLoggedUser, 
-                $sCurrentView,
-                $bRegistrationSuccessfully
-             );
+            $sAction      = "index";
+            
+            Core::verifyNewRegisterSolicitation( $bNewRegister );
+            Core::verifyLoggoutSession( $bLoggedUser );
+            Core::verifyCurrentView( $sCurrentView, $bRegistrationSuccessfully );
 
             if ( $bNewRegister )
                 $sController = "RegisterController";
@@ -101,7 +124,7 @@
                 $sController = "LoginController";
 
         	if ( $bLoggedUser ){
-        		Core::getMyController( $_SESSION[ "tipo" ], $sController );
+                Core::getMyController( $_SESSION[ "id_tipo_usuario" ], $sController );
         	}else{
         		$oController = new LoginController;
         		$oController->login( $sLoginUser, $sLoginPass, $bLoggedUser, $sUserType );
@@ -110,6 +133,16 @@
         			Core::getMyController( $sUserType, $sController );
         	} call_user_func_array( array( new $sController, $sAction ), array( $htmEstruturaPage ) );
         }
+
+        public function verifyThisGetRequest(){
+            if ( isset( $_GET[ "EmailAdress" ] ) ){
+                $sEmailValido = $_GET[ "EmailAdress" ];
+                $oAjaxRequestModel = new AjaxRequestModel;
+                $oAjaxRequestModel->checkThisEmail( $sEmailValido );
+
+                echo json_encode( '{ "EmailValido": ' . ( ($sEmailValido)?('true'):('false') ) . ' }' );
+            }
+        }   ////    Verifica Solicitação de Registro
     }
 
  ?>
