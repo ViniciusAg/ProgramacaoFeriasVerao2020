@@ -5,7 +5,7 @@ import { Snackbar } from 'react-native-paper'
 import { View } from 'react-native'
 
 export default function SnackbarWithRedux() {
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(false)
   const alert = useSelector(state => state.alert)
   const dispatch = useDispatch()
 
@@ -21,7 +21,7 @@ export default function SnackbarWithRedux() {
         onDismiss={() => 
           {
             setVisible(false)
-            dispatch(alertActions.clear())
+            alertActions.clear()
           }}
         action={{
           label: 'Fechar',

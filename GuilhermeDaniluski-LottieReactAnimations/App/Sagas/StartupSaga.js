@@ -11,7 +11,7 @@ export function* startup() {
 
   // Add more operations you need to do at startup here
   // ...
-  yield put(alertActions.success('alo'))
+  // yield put(alertActions.success('alo'))
   // When those operations are finished we redirect to the main screen
   NavigationService.navigateAndReset('SplashScreen')
 }

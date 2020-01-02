@@ -41,13 +41,7 @@ export default function SplashScreen() {
             Testando Animações
           </Text>
         </AnimatedView>
-        {animationEnded && (
-          <View>
-            <Button title="teste" onPress={() => {dispatch(alertActions.success('alo'))}}>
-              teste
-            </Button>
-          </View>
-        )}
+
         <View style={{ flex: 20 }}>
           <Text style={styles.textbottom}>
             Testing animations, no rights reserved.

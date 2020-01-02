@@ -97,6 +97,12 @@ Note: This project will not work if you use npm instead of yarn.
 - `yarn start` to start the metro bundler, in a dedicated terminal
 - `react-native run-ios` to run the iOS application (remember to start a simulator or connect an iPhone phone)
 
+## Testing
+
+Testing is one of the main goals of this project.
+
+The tests are performed using jest
+
 ## License
 
 This project is released under the [MIT License](LICENSE).
