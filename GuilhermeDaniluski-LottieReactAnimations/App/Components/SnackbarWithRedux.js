@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {alertActions} from '../Stores/Messages/Actions'
 import { Snackbar } from 'react-native-paper'
 import { View } from 'react-native'
 
-function SnackbarWithRedux({ alert }) {
+export default function SnackbarWithRedux() {
   const [visible, setVisible] = useState(true)
-  console.log(alert)
+  const alert = useSelector(state => state.alert)
+  const dispatch = useDispatch()
 
   return (
     <View>
@@ -16,7 +18,11 @@ function SnackbarWithRedux({ alert }) {
           color: alert.color,
         }}
         duration={Infinity}
-        onDismiss={() => setVisible(false)}
+        onDismiss={() => 
+          {
+            setVisible(false)
+            dispatch(alertActions.clear())
+          }}
         action={{
           label: 'Fechar',
           onPress: () => {
@@ -29,8 +35,3 @@ function SnackbarWithRedux({ alert }) {
     </View>
   )
 }
-
-const mapStateToProps = (store) => ({
-  alert: store.alert,
-})
-export default connect(mapStateToProps)(SnackbarWithRedux)
