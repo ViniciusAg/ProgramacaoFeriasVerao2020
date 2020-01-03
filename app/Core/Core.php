@@ -42,7 +42,10 @@
                 if ( $_SESSION[ "id_status" ] == $value[ "id" ] )
                     if ( $value[ "nome" ] == "Aguardando Confirmação" ){
                         $sController = "UsuarioSemAcessoController";
-                        $_SESSION[ "StatusDescricao" ] = "Aguardando Confirmação";
+                        $_SESSION[ "StatusDescricao" ] = $value[ "nome" ];
+                    } else if ( $value[ "nome" ] == "Inativo" ){
+                        $sController = "UsuarioSemAcessoController";
+                        $_SESSION[ "StatusDescricao" ] = $value[ "nome" ];
                     }
             }
     	}  ////    Identifica Controller da Sessão 

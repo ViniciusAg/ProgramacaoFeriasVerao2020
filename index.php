@@ -16,6 +16,7 @@
     require_once( "app/Model/ProfessorModel.php" );
     require_once( "app/Model/RegisterModel.php" );
     require_once( "app/Model/AjaxRequestModel.php" );
+    require_once( "app/Model/AdminModel.php" );
 
     session_start();
     // $_SESSION = [];

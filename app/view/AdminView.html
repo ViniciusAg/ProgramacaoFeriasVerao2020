@@ -2,16 +2,116 @@
 	
 	{{MNEMONICO_ICON_LOGOUT}}
 
-	<div class="ui one column middle center aligned grid">
-		<div class="sixteen wide mobile eight wide tablet eight wide computer column">
-
-			<form id="FormView" name="FormView" class="ui form" method="POST">
-				<h1>hello world</h1>
-
-				{{MNEMONICO_INPUT_LOGOUT}}
-				
-			</form>
-			
+	<div class="ui grid">
+		<div class="row">
+			<div class="teen wide mobile sixteen wide tablet sixteen wide computer column">
+				<h1>Olá, {{MNEMONICO_USUARIO_NOME}}</h1>
+			</div>
 		</div>
+
+		<div class="row">
+			<div class="teen wide mobile sixteen wide tablet sixteen wide computer column">
+
+				<div class="ui segment">
+					<div class="ui top attached tabular menu">
+						<a 
+							class="item active"
+							onclick="showMyContent( 'UsuariosSemAcesso' );"
+							id="UsuariosSemAcessoTittle">
+							Usuários Sem Acesso
+						</a>
+						<a 
+							class="item"
+							onclick="showMyContent( 'UsuariosAtivos' );"
+							id="UsuariosAtivosTittle">
+							Usuários Ativos
+						</a>
+						<a 
+							class="item"
+							onclick="showMyContent( 'AulasDadas' );"
+							id="AulasDadasTittle">
+							Aulas Dadas
+						</a>
+						<a 
+							class="item"
+							onclick="showMyContent( 'AulasAssistidas' );"
+							id="AulasAssistidasTittle">
+							Aulas Assistidas
+						</a>
+						<a 
+							class="item"
+							onclick="showMyContent( 'OpcoesRegistro' );"
+							id="OpcoesRegistroTittle">
+							Opções de Registro
+						</a>
+					</div>
+					
+					<div 
+						id="UsuariosSemAcesso" 
+						class="ui bottom attached segment hide">
+						{{MNEMONICO_SEGMENT_USUARIOS_SEM_ACESSO}}
+					</div>
+
+					<div 
+						id="UsuariosAtivos" 
+						class="ui bottom attached segment hide">
+						{{MNEMONICO_SEGMENT_USUARIOS_ATIVOS}}
+					</div>
+
+					<div 
+						id="AulasDadas" 
+						class="ui bottom attached segment hide">
+						{{MNEMONICO_SEGMENT_AULAS_DADAS}}
+					</div>
+
+					<div 
+						id="AulasAssistidas" 
+						class="ui bottom attached segment hide">
+						{{MNEMONICO_SEGMENT_AULAS_ASSISTIDAS}}
+					</div>
+
+					<div 
+						id="OpcoesRegistro" 
+						class="ui bottom attached segment hide">
+						{{MNEMONICO_SEGMENT_OPCOES_REGISTRO}}
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
 	</div>
+
+
+	<form id="FormView" name="FormView" class="ui form" method="POST">
+
+		{{MNEMONICO_INPUT_LOGOUT}}
+
+		<input 
+			type="hidden" 
+			name="SegmentAtual" 
+			id="SegmentAtual" 
+		value="">
+				
+	</form>
+
 </div>
+
+<script>
+	$( ".active" ).click();
+
+	function showMyContent( sIdNewerSegment ){
+
+		var sIdOlderSegment = $( "#SegmentAtual" ).val();
+		var oOlderSegment = null;
+
+		if ( sIdOlderSegment != "" )
+			oOlderSegment = $( "#" + sIdOlderSegment );
+
+		$( "#SegmentAtual" ).val( sIdNewerSegment );
+		var oNewerSegment = $( "#" + sIdNewerSegment );
+
+		$( oOlderSegment ).addClass( "hide" );
+		$( oNewerSegment ).removeClass( "hide" );
+	}	////	Alterna entre abas selecionadas
+</script>

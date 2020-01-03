@@ -5,13 +5,17 @@
 	<div class="ui one column middle center aligned grid">
 		<div class="sixteen wide mobile eight wide tablet eight wide computer column">
 
-			<h1>Olá, {{MNEMONICO_NOME_USUARIO}}! Falta pouco, sua inscrição ainda precisa ser verificada</h1>
-			<br/>
-			<h2>Entraremos em contato com você em breve pelo número {{MNEMONICO_TELEFONE_USUARIO}}</h2>
-			<br/>
-			<h2>Obrigado pelo interesse!</h2>
-			<br/>
-			<h1>Status da inscrição {{MNEMONICO_STATUS_USUARIO}}</h1>
+			<h1>Olá, {{MNEMONICO_NOME_USUARIO}}!</h1>
+
+			<h1>{{MNEMONICO_MENSAGEM_USUARIO_SEM_ACESSO}}</h1>
+
+			<h1>Status da sua inscrição</h1>
+			
+			<h1 class="{{MNEMONICO_COR_STATUS_USUARIO}}">
+
+				{{MNEMONICO_STATUS_USUARIO}}
+
+			</h1>
 			
 		</div>
 	</div>

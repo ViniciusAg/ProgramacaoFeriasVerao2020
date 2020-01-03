@@ -22,11 +22,12 @@
             if ( ($oRequestLogin) && ($oRequestLogin->num_rows) ){
                 $sEvaluated = $oRequestLogin->fetch_assoc();
 
-                $_SESSION[ "id" ] = $sEvaluated[ "id" ];
+                $_SESSION[ "id" ]              = $sEvaluated[ "id" ];
                 $_SESSION[ "id_tipo_usuario" ] = $sEvaluated[ "id_tipo_usuario" ];
-                $_SESSION[ "id_status" ] = $sEvaluated[ "id_status" ];
-                $_SESSION[ "nome" ] = $sEvaluated[ "nome" ];
-                $_SESSION[ "whatsapp" ] = $sEvaluated[ "whatsapp" ];
+                $_SESSION[ "id_status" ]       = $sEvaluated[ "id_status" ];
+                $_SESSION[ "nome" ]            = $sEvaluated[ "nome" ];
+                $_SESSION[ "whatsapp" ]        = $sEvaluated[ "whatsapp" ];
+
                 $sUserType = $sEvaluated[ "id_tipo_usuario" ];
 
                 $bStatus = true;
