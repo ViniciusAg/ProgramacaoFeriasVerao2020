@@ -140,10 +140,12 @@
         public function verifyThisGetRequest(){
             if ( isset( $_GET[ "EmailAdress" ] ) ){
                 $sEmailValido = $_GET[ "EmailAdress" ];
-                $oAjaxRequestModel = new AjaxRequestModel;
-                $oAjaxRequestModel->checkThisEmail( $sEmailValido );
+                $sMethod = $_GET[ "Method" ];
 
-                echo json_encode( '{ "EmailValido": ' . ( ($sEmailValido)?('true'):('false') ) . ' }' );
+                if ( $sMethod == "CheckThisEmail" ){
+                    $oAPIController = new APIController;
+                    $oAPIController->checkThisEmail( $sEmailValido );
+                }                
             }
         }   ////    Verifica Solicitação de Registro
     }

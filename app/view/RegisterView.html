@@ -273,9 +273,15 @@
 
 	function checkEmailAdress( input ){
 		formatToLowerCase( input );
-		var sAdress = $( input ).val();
+		var sAdress = $( input ).val().trim();
+		var sAdressParam = ("&EmailAdress=" + sAdress);
+		var sMethodParam = "&Method=CheckThisEmail";
 		if ( sAdress != "" ){
-			var url = ("http://programacaoferiasverao2020/?RequestFromAjax=true&EmailAdress=" + sAdress);
+			var url = "http://programacaoferiasverao2020/?RequestFromAjax=true";
+			url = (url + sAdressParam);
+			url = (url + sMethodParam);
+
+			console.log( url );
 
 			$.get( url, function( data ){
 				var oResponse = JSON.parse( eval( data ) );
@@ -322,25 +328,25 @@
 
 	function validaForm(){
 
-		var sNomeCompleto 	= $( "#NomeCompleto" ).val();
-		var sCPF 			= $( "#CPF" ).val();
-		var sDataNascimento = $( "#DataNascimento" ).val();
-		var sEtnia 			= $( "#UsuarioEtnia" ).val();
-		var sGenero 		= $( "#UsuarioGenero" ).val();
-		var sUserTelefone	= $( "#UsuarioTelefone" ).val();
-		var sEscolaridade 	= $( "#UsuarioEscolaridade" ).val();
-		var sCEP 			= $( "#CEP" ).val();
-		var sLogradouro 	= $( "#Logradouro" ).val();
-		var sNumero 		= $( "#Numero" ).val();
-		var sComplemento 	= $( "#Complemento" ).val();
-		var sBairro 		= $( "#Bairro" ).val();
-		var sCidade 		= $( "#Cidade" ).val();
-		var sEmailAdress 	= $( "#EmailAdress" ).val();
-		var sTipoUsuario 	= $( "#TipoUsuario" ).val();
-		var sDisciplinas 	= $( "#Disciplinas" ).val();
-		var sEscEnsinoMedio = $( "#EscolaEnsinoMedio" ).val();
-		var sUserPassword   = $( "#UserPassword" ).val();
-		var sReUserPassword = $( "#ReUserPassword" ).val();
+		var sNomeCompleto 	= $( "#NomeCompleto" ).val().trim();
+		var sCPF 			= $( "#CPF" ).val().trim();
+		var sDataNascimento = $( "#DataNascimento" ).val().trim();
+		var sEtnia 			= $( "#UsuarioEtnia" ).val().trim();
+		var sGenero 		= $( "#UsuarioGenero" ).val().trim();
+		var sUserTelefone	= $( "#UsuarioTelefone" ).val().trim();
+		var sEscolaridade 	= $( "#UsuarioEscolaridade" ).val().trim();
+		var sCEP 			= $( "#CEP" ).val().trim();
+		var sLogradouro 	= $( "#Logradouro" ).val().trim();
+		var sNumero 		= $( "#Numero" ).val().trim();
+		var sComplemento 	= $( "#Complemento" ).val().trim();
+		var sBairro 		= $( "#Bairro" ).val().trim();
+		var sCidade 		= $( "#Cidade" ).val().trim();
+		var sEmailAdress 	= $( "#EmailAdress" ).val().trim();
+		var sTipoUsuario 	= $( "#TipoUsuario" ).val().trim();
+		var sDisciplinas 	= $( "#Disciplinas" ).val().trim();
+		var sEscEnsinoMedio = $( "#EscolaEnsinoMedio" ).val().trim();
+		var sUserPassword   = $( "#UserPassword" ).val().trim();
+		var sReUserPassword = $( "#ReUserPassword" ).val().trim();
 
 		var sMensagemErro = "";
 
@@ -383,8 +389,8 @@
 		if ( (sUserPassword == "") || (sUserPassword == null) )
 			sMensagemErro = appendMessageInputVazio( "SENHA", sMensagemErro );
 
-		sUserPassword   = md5( $( "#UserPassword" ).val() );
-		sReUserPassword = md5( $( "#ReUserPassword" ).val() );
+		sUserPassword   = md5( $( "#UserPassword" ).val().trim() );
+		sReUserPassword = md5( $( "#ReUserPassword" ).val().trim() );
 
 		var formPreenchido = (sMensagemErro == "");
 

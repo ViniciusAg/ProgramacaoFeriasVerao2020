@@ -9,12 +9,13 @@
     require_once( "app/Controller/LogoutController.php" );
     require_once( "app/Controller/RegisterController.php" );
     require_once( "app/Controller/UsuarioSemAcessoController.php" );
+    require_once( "app/Controller/APIController.php" );
    
     require_once( "app/Model/LoginModel.php" );
     require_once( "app/Model/ConnectionModel.php" );
     require_once( "app/Model/ProfessorModel.php" );
     require_once( "app/Model/RegisterModel.php" );
-    require_once( "app/Model/AjaxRequestModel.php" );
+    require_once( "app/Model/APIModel.php" );
     require_once( "app/Model/AdminModel.php" );
 
     session_start();

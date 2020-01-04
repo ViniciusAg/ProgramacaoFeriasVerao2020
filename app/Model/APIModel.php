@@ -1,6 +1,6 @@
 <?php
 
-    class AjaxRequestModel{
+    class APIModel{
         public function checkThisEmail( &$sEmailAdress ){
 
             $oDbLink = new Connect;
