@@ -7,7 +7,7 @@ import LottieView from 'lottie-react-native'
 import clockAnimation from '../../Assets/Animations/clock/clock_animation.json'
 import { View as AnimatedView } from 'react-native-animatable'
 
-const fontColor = '#fff'
+const fontColor = '#000'
 
 export default function SplashScreen() {
   const [animationEnded, setAnimationEnded] = useState(false)
