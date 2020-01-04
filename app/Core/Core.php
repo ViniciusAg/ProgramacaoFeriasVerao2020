@@ -130,7 +130,7 @@
                 Core::getMyController( $_SESSION[ "id_tipo_usuario" ], $sController );
         	}else{
         		$oController = new LoginController;
-        		$oController->login( $sLoginUser, $sLoginPass, $bLoggedUser, $sUserType );
+        		$oController->start( $sLoginUser, $sLoginPass, $bLoggedUser, $sUserType );
         		
         		if ( $bLoggedUser )
         			Core::getMyController( $sUserType, $sController );

@@ -3,7 +3,6 @@
     require_once( "app/Core/Core.php" );
     
     require_once( "app/Controller/LoginController.php" );
-    require_once( "app/Controller/ErroController.php" );
     require_once( "app/Controller/AlunoController.php" );
     require_once( "app/Controller/ProfessorController.php" );
     require_once( "app/Controller/AdminController.php" );

@@ -1,7 +1,7 @@
 <?php
 
     class LoginController{
-        public function login( &$sLoginUser, &$sLoginPass, &$bStatus, &$sUserType ){
+        public function start( &$sLoginUser, &$sLoginPass, &$bStatus, &$sUserType ){
             $sLoginUser = filter_input( 
                 INPUT_POST, 
                 "EmailUsuario", 

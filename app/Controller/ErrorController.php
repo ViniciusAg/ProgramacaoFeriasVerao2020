@@ -14,7 +14,7 @@
                 }
             }
 
-            $htmLoginBody = file_get_contents( "app/View/ProfessorView.html" );
+            $htmLoginBody = file_get_contents( "app/View/ProfessorView/index.html" );
             $htmLoginBody = str_replace( "{{MNEMONICO_LISTAGEM}}" , $sListagemDeAlunos, $htmLoginBody);
             $htmLoginBody = str_replace( "{{MNEMONICO_TURMA}}", "Geral", $htmLoginBody );
 

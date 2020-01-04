@@ -2,16 +2,16 @@
 
     class AdminController{
         public function index(){
-            $htmAdminView = file_get_contents( "app/View/AdminView.html" );
+            $htmAdminView = file_get_contents( "app/View/AdminView/index.html" );
 
             $oController = new LogoutController;
             $oController->index( $htmAdminView );
 
-            $htmUsuariosSemAcesso = file_get_contents( "app/View/AdminView-UsuariosSemAcesso.html" );
-            $htmUsuariosAtivos 	  = file_get_contents( "app/View/AdminView-UsuariosAtivos.html" );
-            $htmAulasDadas 		  = file_get_contents( "app/View/AdminView-AulasDadas.html" );
-            $htmAulasAssistidas   = file_get_contents( "app/View/AdminView-AulasAssistidas.html" );
-            $htmOpcoesRegistro 	  = file_get_contents( "app/View/AdminView-OpcoesRegistro.html" );
+            $htmUsuariosSemAcesso = file_get_contents( "app/View/AdminView/AbaMenuUsuariosSemAcesso.html" );
+            $htmUsuariosAtivos 	  = file_get_contents( "app/View/AdminView/AbaMenuUsuariosAtivos.html" );
+            $htmAulasDadas 		  = file_get_contents( "app/View/AdminView/AbaMenuAulasDadas.html" );
+            $htmAulasAssistidas   = file_get_contents( "app/View/AdminView/AbaMenuAulasAssistidas.html" );
+            $htmOpcoesRegistro 	  = file_get_contents( "app/View/AdminView/AbaMenuOpcoesRegistro.html" );
 
             $oAdminModel = new AdminModel;
 

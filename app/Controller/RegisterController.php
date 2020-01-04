@@ -56,7 +56,7 @@
 
         public function index(){
             $htmRegisterView = file_get_contents( "app/View/RegisterView.html" );
-            $htmVoltarIcon   = file_get_contents( "app/View/LogoutView-Icon.html" );
+            $htmVoltarIcon   = file_get_contents( "app/View/LogoutView/ButtonQuit.html" );
 
             $htmVoltarIcon   = str_replace( 
             	"{{MNEMONICO_MENSAGEM_ICONE_LOGOUT}}", 

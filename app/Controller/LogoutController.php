@@ -2,8 +2,8 @@
 
     class LogoutController{
         public function index( &$htmPageToShow ){
-            $htmIconLogout = file_get_contents( "app/View/LogoutView-Icon.html" );
-            $htmInputLogout = file_get_contents( "app/View/LogoutView-Input.html" );
+            $htmIconLogout = file_get_contents( "app/View/LogoutView/ButtonQuit.html" );
+            $htmInputLogout = file_get_contents( "app/View/LogoutView/InputHiddenLogOutSession.html" );
 
             $htmPageToShow = str_replace( "{{MNEMONICO_ICON_LOGOUT}}", $htmIconLogout, $htmPageToShow );
             $htmPageToShow = str_replace( "{{MNEMONICO_MENSAGEM_ICONE_LOGOUT}}" , "Sair", $htmPageToShow );
