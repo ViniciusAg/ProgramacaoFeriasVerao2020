@@ -1,20 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useRef, useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { alertActions } from '../../Stores/Messages/Actions'
 
-import { Text, View, Button } from 'react-native'
+import { Text, View } from 'react-native'
 import styles from './SplashScreenStyle'
+import LottieView from 'lottie-react-native'
+import clockAnimation from '../../Assets/Animations/clock/clock_animation.json'
 import { View as AnimatedView } from 'react-native-animatable'
 
-
-
-const fontColor = '#353b4f'
+const fontColor = '#fff'
 
 export default function SplashScreen() {
   const [animationEnded, setAnimationEnded] = useState(false)
   const animationRef = useRef(true)
-  const dispatch = useDispatch()
 
   useEffect(() => {
     if (animationRef) {
@@ -40,13 +37,9 @@ export default function SplashScreen() {
           >
             Testando Animações
           </Text>
-        </AnimatedView>
 
-        <View style={{ flex: 20 }}>
-          <Text style={styles.textbottom}>
-            Testing animations, no rights reserved.
-          </Text>
-        </View>
+          <LottieView source={clockAnimation} autoPlay loop />
+        </AnimatedView>
       </View>
     </View>
   )

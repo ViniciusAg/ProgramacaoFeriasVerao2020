@@ -37,7 +37,7 @@ WARNING: If you want to use this project as a boilerplate use this [commit](http
 
 The boilerplate contains:
 
-- a [React Native](https://facebook.github.io/react-native/) (v**0.60.5**) application (in "[ejected](https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md)" mode to allow using dependencies that rely on native code)
+- a [React Native](https://facebook.github.io/react-native/) (v**0.61.5**) application (in "[ejected](https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md)" mode to allow using dependencies that rely on native code)
 - a [clear directory layout](#directory-layout) to provide a base architecture for your application
 - [Redux](https://redux.js.org/) (v4.0.1) to help manage state
 - [Redux Persist](https://github.com/rt2zz/redux-persist) (v5.10.0) to persist the Redux state
@@ -101,7 +101,7 @@ Note: This project will not work if you use npm instead of yarn.
 
 Testing is one of the main goals of this project.
 
-The tests are performed using jest
+The tests are performed using [jest](https://jestjs.io/docs/en/tutorial-react-native).
 
 ## License
 
