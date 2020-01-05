@@ -18,3 +18,5 @@ O diretóio foi divido nas sequintes pastas:
 ferramenta <strong>Figma</strong>, que permite visualizar o script .css dos elementos do layout. 
 
 Em <strong>layout</strong>, é possível visualizar o site tanto na versão para desktop como mobile. 
+
+![mobile](https://user-images.githubusercontent.com/46378210/71784093-2fcdb400-2fce-11ea-9fad-b18cf12b355b.PNG)
