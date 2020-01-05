@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Learn JS</title>
+</head>
+<body>
+	
+	<!--Using a promises-->
+	<script>
+
+		function getAddress (age) { 
+    		return new Promise ((resolve, reject)=>{
+     			if(age >= 18){
+						console.log("Greather then eighteen");
+					} else {
+						console.log("Less then eighteen");
+					}
+			     }); 
+			}
+
+		function getUser (age) { 
+    	return new Promise((resolve, reject)=>{ setTimeout(_=>resolve(getAddress(age)), 2000); }); 
+}
+
+		getUser(15).then( result=>console.log('Done') );
+			
+		/*
+		var myPromice = function(age) {
+			return new Promise(function(resolve, reject) {
+				if(age >= 18){
+						resolve("Greather then eighteen");
+					} else {
+						reject("Less then eighteen");
+					}
+			});
+		}
+		 		
+		
+		myPromice(20)
+		.then(function() {
+		 console.log("Greather then eighteen");
+		 })
+		 .catch(function() {
+		 console.log("Less the eigtheen");
+		 });
+		 */
+
+	</script>
+
+</div>
+
+<script>
+
+	                                                                                                                                           
+</script>
+</body>
+</html>

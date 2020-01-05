@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GitHub Reposities</title>
+</head>
+<body>
+	
+	<input type="text" name="">
+	<button>Seach My Repositories</button>
+
+	<!--For use the Axios-->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+
+		axios.get("https://api.github.com/users/Diana-ops/repos")
+		.then(function(response) { //If response was execute, then a action will be execute too
+			console.log(response.data.avatar_url);
+		})
+		//If an error happen, other thing happen
+		.catch(function(error) {
+			console.warn(error);
+		});
+	</script>
+
+</div>
+
+<script>
+
+	                                                                                                                                           
+</script>
+</body>
+</html>
