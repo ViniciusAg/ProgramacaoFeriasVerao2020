@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Learn JS</title>
+</head>
+<body>
+<h1>Hello JS</h1>
+<div id="body">
+
+<button id="bot">Click</button>
+<div class="box"></div>
+
+</div>
+<script>
+	var capture = document.querySelector("div#body button");
+	capture.onclick = function()
+	{
+		//alert("You pressed a button");
+
+		//Each time a button is pressed,a new square is generated on the screen. 
+
+		//Create a element with JS
+		var newSquare = document.createElement("div");
+
+		//To Create a text in the new div 
+		var newText = document.createTextNode("New Square");
+		newSquare.appendChild(newText);
+
+		var divActualy = document.getElementById("box");
+		document.body.insertBefore(newSquare, divActualy);
+
+		//Defining a style of the element 
+		newSquare.style.height = "100";
+		newSquare.style.width = "100";
+		newSquare.style.backgroundColor = "red";
+
+
+	}                                                                                                                                              
+</script>
+</body>
+</html>

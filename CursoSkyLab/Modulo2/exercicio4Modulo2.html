@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Learn JS</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+
+
+<h1>Hello JS</h1>
+<div id="body">
+
+	<input type="text" name="name" id="inputName">
+	<button onClick="addName()">Add Name</button>
+
+</div>
+<script>
+
+	/* Test for to use "array.length"
+	var numbers = ["1", "2", "3", "4", "5"];
+
+	for (var i = 0; i < numbers.length; i++) {
+	  numbers[i] *= 2;
+	  console.log(numbers[i]);
+	}
+	*/
+
+	var names = ["Diego", "Gabriel", "Lucas"];
+
+	function showNames(){
+		var n = 0;
+		while(names[n] != undefined)
+		{
+			var newSquare = document.createElement("li");
+			var newText = document.createTextNode(names[n]);
+			newSquare.appendChild(newText);
+
+			//Reference about where put the element in HTML
+			var divActualy = document.getElementById("body");
+			document.body.insertBefore(newSquare, divActualy);
+			n++;
+		}   
+		names = [];
+	}
+	function addName()
+	{
+		//Get the value insed of imput in HTML
+		var newNameUser = document.querySelector("#inputName");
+
+		//Putting the new name in the array 
+		names.push(newNameUser.value);
+
+		newNameUser.value = " ";
+
+		//Call the function for show the names 
+		showNames();
+	}                                                                                                                                           
+</script>
+</body>
+</html>
