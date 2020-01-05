@@ -17,7 +17,7 @@ O diretóio foi divido nas sequintes pastas:
 - assets: composto pelas imagens que estarão na aplicação. Além de um arquivo do tipo .sketch, onde foi montado o desing a partir da 
 ferramenta <strong>Figma</strong>, que permite visualizar o script .css dos elementos do layout. 
 
-Em <strong>layout</strong>, é possível visualizar o site tanto na versão para desktop como mobile. 
+Em <strong>layout</strong>, é possível visualizar o site tanto na versão para <strong>desktop</strong> como <strong>mobile</strong>. 
 
 ![mobile](https://user-images.githubusercontent.com/46378210/71784093-2fcdb400-2fce-11ea-9fad-b18cf12b355b.PNG)
 ![desktop](https://user-images.githubusercontent.com/46378210/71784106-60155280-2fce-11ea-915d-afd0b4012418.PNG)
