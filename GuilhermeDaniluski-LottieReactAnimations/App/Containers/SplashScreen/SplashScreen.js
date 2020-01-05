@@ -2,12 +2,15 @@
 import React, { useRef, useEffect, useState } from 'react'
 
 import { Text, View } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 import styles from './SplashScreenStyle'
 import LottieView from 'lottie-react-native'
-import clockAnimation from '../../Assets/Animations/clock/clock_animation.json'
+import clockAnimation from '../../Assets/Animations/clock_animation/clock.json'
+// import clockAnimation from '../../Assets/Animations/1633.json'
+
 import { View as AnimatedView } from 'react-native-animatable'
 
-const fontColor = '#000'
+const fontColor = '#fff'
 
 export default function SplashScreen() {
   const [animationEnded, setAnimationEnded] = useState(false)
@@ -21,13 +24,13 @@ export default function SplashScreen() {
 
   const _animate = async () => animationRef.current.fadeInUpBig(1500).then(setAnimationEnded(true))
   return (
-    <View style={styles.viewStyles}>
+    <LinearGradient colors={['#A8A7A7', '#99B898', '#474747', '#363636']} style={styles.viewStyles}>
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <View style={{ flex: 30 }}></View>
-        <AnimatedView ref={animationRef} style={{ flex: 50, flexDirection: 'column' }}>
+
+        <AnimatedView ref={animationRef} style={{ flex: 80, flexDirection: 'column' }}>
           <Text
             style={{
-              flex: 1,
               textShadowRadius: 20,
               color: fontColor,
               fontSize: 20,
@@ -35,12 +38,12 @@ export default function SplashScreen() {
               textAlign: 'center',
             }}
           >
-            Testando Animações
+            The Clocker
           </Text>
-
           <LottieView source={clockAnimation} autoPlay loop />
+
         </AnimatedView>
       </View>
-    </View>
+    </LinearGradient>
   )
 }
