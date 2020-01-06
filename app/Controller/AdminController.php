@@ -10,47 +10,50 @@
             	$htmIndex
              ); ////    Carrega Janela Usuarios Sem Acesso
 
-            $oUsuariosAguardandoAprovacao = NULL;
-            $oUsuariosInativos            = NULL;
+            $oUsuariosRegistrados = NULL;
 
-            $oAdminModel->getUsuariosSemAcesso( 
-                $oUsuariosAguardandoAprovacao, 
-                $oUsuariosInativos
-             ); ////    Consulta Usuarios Sem Acesso
+            $oAdminModel->getUsuariosRegistrados( $oUsuariosRegistrados );
              
             $sTableUsrsAguardandoAprovacaoRows = "";
-            foreach ($oUsuariosAguardandoAprovacao as $key => $value) {
-                $sTableUsrsAguardandoAprovacaoRows .= "<tr>";
-                $sTableUsrsAguardandoAprovacaoRows .=   "<td>" . $value[ "nome" ]                . "</td>";
-                $sTableUsrsAguardandoAprovacaoRows .=   "<td>" . $value[ "data_nascimento" ]     . "</td>";
-                $sTableUsrsAguardandoAprovacaoRows .=   "<td>" . $value[ "ano_matricula" ]       . "</td>";
-                $sTableUsrsAguardandoAprovacaoRows .=   "<td>" . $value[ "id_escolaridade" ]     . "</td>";
-                $sTableUsrsAguardandoAprovacaoRows .=   "<td>" . $value[ "escola_ensino_medio" ] . "</td>";
-                $sTableUsrsAguardandoAprovacaoRows .=   "<td>" . $value[ "email" ]               . "</td>";
-                $sTableUsrsAguardandoAprovacaoRows .=   "<td>" . $value[ "whatsapp" ]            . "</td>";
-                $sTableUsrsAguardandoAprovacaoRows .=   "<td>" . $value[ "id_tipo_usuario" ]     . "</td>";
-                $sTableUsrsAguardandoAprovacaoRows .=   "<td><a class='ui green large label'>Aceitar</a></td>";
-                $sTableUsrsAguardandoAprovacaoRows .= "</tr>";
+            $sTableUsuariosInativosRows = "";
+
+            //  $sBotaoAtivar = "<a class='ui green large label' onclick='setUsuarioAtivo( $( this ) );'>Ativar</a>";
+
+            foreach ( $oUsuariosRegistrados as $key => $value ) {
+                $sId = $value[ "id" ];
+
+                $sRowToShow  = "";
+                $sRowToShow .= "<tr id='TR" . $sId . "'>";
+                $sRowToShow .=   "<td id='NM" . $sId . "'>" . $value[ "nome" ]          . "</td>";
+                $sRowToShow .=   "<td>" . $value[ "data_nascimento" ]                   . "</td>";
+                $sRowToShow .=   "<td>" . $value[ "ano_matricula" ]                     . "</td>";
+                $sRowToShow .=   "<td>" . $value[ "escolaridade" ]                      . "</td>";
+                $sRowToShow .=   "<td>" . $value[ "escola_ensino_medio" ]               . "</td>";
+                $sRowToShow .=   "<td>" . $value[ "email" ]                             . "</td>";
+                $sRowToShow .=   "<td>" . $value[ "whatsapp" ]                          . "</td>";
+                $sRowToShow .=   "<td id='USR" . $sId . "'>" . $value[ "tipo_usuario" ] . "</td>";
+
+                $sBotaoAtivar  = "<a ";
+                $sBotaoAtivar .=    "class='ui green large label'";
+                $sBotaoAtivar .=    "onclick='showModalAtivaUsuario( " . $value[ "id" ] . " );'>";
+                $sBotaoAtivar .=    "Ativar";
+                $sBotaoAtivar .= "</a>";
+
+                $sRowToShow .=   "<td>" . $sBotaoAtivar . "</td>";
+                $sRowToShow .= "</tr>";
+
+                if ( $value[ "status" ] == "Inativo" )
+                    $sTableUsuariosInativosRows .= $sRowToShow;
+                else if ( $value[ "status" ] != "Ativo" )
+                    $sTableUsrsAguardandoAprovacaoRows .= $sRowToShow;
+
             }   $htmIndex = str_replace( 
                 "{{MNEMONICO_TBODY_USUARIOS_AGUARDANDO_APROVACAO}}",
                 $sTableUsrsAguardandoAprovacaoRows, 
                 $htmIndex
-             ); ////   Alimenta Table Usuarios Aguardando Aprovacao 
-
-            $sTableUsuariosInativosRows = "";
-            foreach ($oUsuariosInativos as $key => $value) {
-                $sTableUsuariosInativosRows .= "<tr>";
-                $sTableUsuariosInativosRows .=   "<td>" . $value[ "nome" ]                . "</td>";
-                $sTableUsuariosInativosRows .=   "<td>" . $value[ "data_nascimento" ]     . "</td>";
-                $sTableUsuariosInativosRows .=   "<td>" . $value[ "ano_matricula" ]       . "</td>";
-                $sTableUsuariosInativosRows .=   "<td>" . $value[ "id_escolaridade" ]     . "</td>";
-                $sTableUsuariosInativosRows .=   "<td>" . $value[ "escola_ensino_medio" ] . "</td>";
-                $sTableUsuariosInativosRows .=   "<td>" . $value[ "email" ]               . "</td>";
-                $sTableUsuariosInativosRows .=   "<td>" . $value[ "whatsapp" ]            . "</td>";
-                $sTableUsuariosInativosRows .=   "<td>" . $value[ "id_tipo_usuario" ]     . "</td>";
-                $sTableUsuariosInativosRows .=   "<td><a class='ui green large label'>Ativar</a></td>";
-                $sTableUsuariosInativosRows .= "</tr>";
-            }   $htmIndex = str_replace( 
+             ); ////   Alimenta Table Usuarios Aguardando Aprovacao
+            
+            $htmIndex = str_replace( 
                 "{{MNEMONICO_TBODY_USUARIOS_INATIVOS}}",
                 $sTableUsuariosInativosRows, 
                 $htmIndex

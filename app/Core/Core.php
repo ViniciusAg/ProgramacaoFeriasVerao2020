@@ -95,7 +95,9 @@
 
                 if ( $sSendingNewRegisterForm == "true" ){
                     $oController = new RegisterController;
-                    $oController->verifyNewRegisterForm( $bRegistrationSuccessfully );
+                    $bRetornoNewRegisterForm = $oController->verifyNewRegisterForm( 
+                        $bRegistrationSuccessfully
+                     ); $bRegistrationSuccessfully = $bRetornoNewRegisterForm;
                 }   ////    Valida Form de Registro
             }
         }   ////    Identifica View do Form
@@ -120,11 +122,13 @@
             Core::verifyLoggoutSession( $bLoggedUser );
             Core::verifyCurrentView( $sCurrentView, $bRegistrationSuccessfully );
 
-            if ( $bNewRegister )
+            if ( $bNewRegister ){    ////    Click at "New" button
                 $sController = "RegisterController";
-
-            if ( $bRegistrationSuccessfully )
-                $sController = "LoginController";
+                if ( $bRegistrationSuccessfully )
+                    $sController = "LoginController";
+                else    ////    Return Register View If Occur An Error
+                    $sController = "RegisterController";
+            }
 
         	if ( $bLoggedUser ){
                 Core::getMyController( $_SESSION[ "id_tipo_usuario" ], $sController );
@@ -137,8 +141,26 @@
         	} call_user_func_array( array( new $sController, $sAction ), array( $htmEstruturaPage ) );
         }
 
+        private function abbleCors(){
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Methods: GET, POST');
+            header("Access-Control-Allow-Headers: X-Requested-With");
+        }
+
         public function verifyThisGetRequest(){
+            if ( isset( $_GET[ "UserID" ] ) ){
+                Core::abbleCors();
+                $sUserToManage = $_GET[ "UserID" ];
+                $sMethod = $_GET[ "Method" ];
+
+                if ( $sMethod == "ActiveThisUser" ){
+                    $oAPIController = new APIController;
+                    $oAPIController->ActiveThisUser( $sUserToManage );
+                }   
+            }
+
             if ( isset( $_GET[ "EmailAdress" ] ) ){
+                Core::abbleCors();
                 $sEmailValido = $_GET[ "EmailAdress" ];
                 $sMethod = $_GET[ "Method" ];
 

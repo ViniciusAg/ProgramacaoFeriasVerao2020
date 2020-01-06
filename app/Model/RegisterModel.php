@@ -2,6 +2,21 @@
 
     class RegisterModel{
 
+        
+        public function getItemInCadastrosUsuariosByColumnName( 
+            $sItemToCheck,
+            $sColumnName
+             ){
+                $oDbLink = new Connect;
+                $oDbLink = $oDbLink->start();
+
+                $sQuery = "SELECT id FROM cadastros_usuarios WHERE " . $sColumnName . " = '" . $sItemToCheck . "'";
+                
+                // return $sQuery;
+
+                return $oDbLink->query( $sQuery );
+            }
+
         public function getIdOf( &$sIdEncontrado = NULL ){
             $aTypeOfRegisterToCheck = $sIdEncontrado;
 
@@ -75,7 +90,7 @@
             $sColunas .= "`logradouro`, "      . "`numero`, "              . "`complemento`, "; 
             $sColunas .= "`bairro`, "          . "`cidade`, "              . "`email`, ";
             $sColunas .= "`id_tipo_usuario`, " . "`escola_ensino_medio`, " . "`senha`, ";
-            $sColunas .= "`whatsapp`, "        . "`id_status` ";
+            $sColunas .= "`whatsapp`, "        . "`id_status`, "           . "`data_cadastro` ";
 
             $sNewValues  =       "NULL, '"                 . $sNomeCompleto        . "', '" . $sNumeroCPF    . "', "; 
             $sNewValues .= "'" . $sDataNascimento  . "', '" . date( "Y" )           . "', '" . $sUsuarioEtnia . "', ";
@@ -83,7 +98,7 @@
             $sNewValues .= "'" . $sLogradouro      . "', '" . $sNumero              . "', '" . $sComplemento  . "', ";
             $sNewValues .= "'" . $sBairro          . "', '" . $sCidade              . "', '" . $sEmailAdress  . "', ";
             $sNewValues .= "'" . $sTipoUsuario     . "', '" . $sEscolaEnsinoMedio   . "', '" . $sUserPassword . "', ";
-            $sNewValues .= "'" . $sUsuarioTelefone . "', 20 ";
+            $sNewValues .= "'" . $sUsuarioTelefone . "', 20, '" . date( "Y-m-d H:i:s" ) . "'";
 
             $sQuery = "INSERT INTO cadastros_usuarios ( " . $sColunas . " ) VALUES ( " . $sNewValues . " );";
 

@@ -42,15 +42,28 @@
 
             ////    Validacao Form
 
+            $oRegisterModel = new RegisterModel;
             
+            $oRegistroExistente = $oRegisterModel->getItemInCadastrosUsuariosByColumnName( 
+                $sEmailAdress, 
+                "email" 
+            );
+
+            $bFormValidado = false;
+
+            // if ( !(isset( $oRegisterModel->num_rows )) )
+            //     $bFormValidado = true;
+
+            if ( $oRegistroExistente->num_rows == 0  )
+                $bFormValidado = true;
 
             ////    Validacao Form Final
-            
-            $bFormValidado = true;
 
             if ( $bFormValidado ){
-                $oRegisterModel = new RegisterModel;
                 $oRegisterModel->setNewUser( $aValuesFromPostFormToCheck, $bRegistrationSuccessfully );
+            } else {
+                $bRegistrationSuccessfully = false;
+                echo "<script>window.alert( 'O email " . $sEmailAdress . " é invalido!' );</script>";
             }
         }
 

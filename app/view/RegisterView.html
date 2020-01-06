@@ -329,21 +329,21 @@
 	function validaForm(){
 
 		var sNomeCompleto 	= $( "#NomeCompleto" ).val().trim();
-		var sCPF 			= $( "#CPF" ).val().trim();
-		var sDataNascimento = $( "#DataNascimento" ).val().trim();
-		var sEtnia 			= $( "#UsuarioEtnia" ).val().trim();
-		var sGenero 		= $( "#UsuarioGenero" ).val().trim();
-		var sUserTelefone	= $( "#UsuarioTelefone" ).val().trim();
-		var sEscolaridade 	= $( "#UsuarioEscolaridade" ).val().trim();
-		var sCEP 			= $( "#CEP" ).val().trim();
+		var sCPF 			= $( "#CPF" ).val();
+		var sDataNascimento = $( "#DataNascimento" ).val();
+		var sEtnia 			= $( "#UsuarioEtnia" ).val();
+		var sGenero 		= $( "#UsuarioGenero" ).val();
+		var sUserTelefone	= $( "#UsuarioTelefone" ).val();
+		var sEscolaridade 	= $( "#UsuarioEscolaridade" ).val();
+		var sCEP 			= $( "#CEP" ).val();
 		var sLogradouro 	= $( "#Logradouro" ).val().trim();
 		var sNumero 		= $( "#Numero" ).val().trim();
 		var sComplemento 	= $( "#Complemento" ).val().trim();
 		var sBairro 		= $( "#Bairro" ).val().trim();
 		var sCidade 		= $( "#Cidade" ).val().trim();
 		var sEmailAdress 	= $( "#EmailAdress" ).val().trim();
-		var sTipoUsuario 	= $( "#TipoUsuario" ).val().trim();
-		var sDisciplinas 	= $( "#Disciplinas" ).val().trim();
+		var sTipoUsuario 	= $( "#TipoUsuario" ).val();
+		var sDisciplinas 	= $( "#Disciplinas" ).val();
 		var sEscEnsinoMedio = $( "#EscolaEnsinoMedio" ).val().trim();
 		var sUserPassword   = $( "#UserPassword" ).val().trim();
 		var sReUserPassword = $( "#ReUserPassword" ).val().trim();
@@ -493,6 +493,6 @@
 		$( "#TipoUsuario" ).val( 7 );
 		$( "#Disciplinas" ).val( [1, 2, 3 ] );
 		$( "#EscolaEnsinoMedio" ).val( "EMEIEF" );
-	}////simulaFormPreenchido();
+	}simulaFormPreenchido();
 
 </script>

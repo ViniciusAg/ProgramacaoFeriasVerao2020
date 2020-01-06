@@ -14,7 +14,7 @@
                 }
             }
 
-            $htmProfessorView = file_get_contents( "app/View/ProfessorView.html" );
+            $htmProfessorView = file_get_contents( "app/View/ProfessorView/index.html" );
             $htmProfessorView = str_replace( "{{MNEMONICO_LISTAGEM}}" , $sListagemDeAlunos, $htmProfessorView);
             $htmProfessorView = str_replace( "{{MNEMONICO_TURMA}}", "Geral", $htmProfessorView );
 

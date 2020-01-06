@@ -49,6 +49,10 @@
         color: #ff6c00 !important;
     }
 
+    .width35mm {
+        width: 3.5cm;
+    }
+
 </style>
 <html>
     <head>
@@ -56,24 +60,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
-        <link rel="stylesheet" type="text/css" href="semantic/calendar.min.css">
+        <link rel="stylesheet" type="text/css" href="dist/semantic/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="dist/semantic/calendar.min.css">
 
-        <script src="js/jquery-3.4.1.min.js"></script>
-        <script src="js/jquery.mask.js"></script>
-        <script src="js/md5.min.js"></script>
-        <script src="semantic/semantic.min.js"></script>
-        <script src="semantic/calendar.min.js"></script>
+        <script src="dist/sweetalert2.all.min.js"></script>
+        <script src="dist/js/jquery-3.4.1.min.js"></script>
+        <script src="dist/js/jquery.mask.js"></script>
+        <script src="dist/js/md5.min.js"></script>
+        <script src="dist/semantic/semantic.min.js"></script>
+        <script src="dist/semantic/calendar.min.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="dist/sweetalert2.min.css">
+        <link rel="stylesheet" type="text/css" href="dist/css/style.css">
         <link rel="icon" href="../../img/logo-uneafro-small.jpg">
-        <title>phpRosaParksProject</title>
+        <title>Cursinho Rosa Parks</title>
     </head>
     <body class="masthead">
 
-        <!-- <figure class="item-fixo superior-esquerdo">
+        <figure class="item-fixo superior-esquerdo">
             <img src="img/uneafro_peq.png">
-        </figure> -->
+        </figure>
 
         {{CONTENT}}
 
@@ -91,6 +97,12 @@
     $('.ui.menu .ui.dropdown').dropdown({
         on: 'hover'
     });
+
+    $('.ui.modal')
+        .modal( {
+            blurring: true
+         })
+    ;
 
     $('.ui.menu a.item').on('click', function() {   
         $(this)

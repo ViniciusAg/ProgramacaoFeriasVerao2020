@@ -1,17 +1,17 @@
 <table class="ui striped celled selectable orange table">
 	<thead>
 		<tr>
-			<th colspan="9">Usuários Aguardando Aprovação</th>
+			<th colspan="11">Usuários Aguardando Aprovação</th>
 		</tr>
 		<tr>
-			<th>Nome Completo</th>
-			<th>Data de Nascimento</th>
-			<th>Ano de Matrícula</th>
+			<th>Nome</th>
+			<th>Nascimento</th>
+			<th>Ano</th>
 			<th>Escolaridade</th>
 			<th>Escola Ensino Médio</th>
 			<th>E-mail</th>
-			<th>WhatsApp</th>
-			<th>Tipo de Usuário</th>
+			<th class="width35mm">WhatsApp</th>
+			<th>Tipo</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -23,17 +23,17 @@
 <table class="ui striped celled selectable red table">
 	<thead>
 		<tr>
-			<th colspan="9">Usuários Inativos</th>
+			<th colspan="11">Usuários Inativos</th>
 		</tr>
 		<tr>
 			<th>Nome Completo</th>
 			<th>Data de Nascimento</th>
-			<th>Ano de Matrícula</th>
+			<th>Ano</th>
 			<th>Escolaridade</th>
 			<th>Escola Ensino Médio</th>
 			<th>E-mail</th>
-			<th>WhatsApp</th>
-			<th>Tipo de Usuário</th>
+			<th class="width35mm">WhatsApp</th>
+			<th>Tipo</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -41,3 +41,77 @@
 		{{MNEMONICO_TBODY_USUARIOS_INATIVOS}}
 	</tbody>
 </table>
+
+<div id="ModalAtivaUsuario" class="ui basic modal">
+	<div class="ui icon header">
+		<h1>
+			Deseja ativar o usuário 
+			<b id="ModalAtivaUsuarioNomeUsuario"></b>?
+		</h1>
+	</div>
+	<div class="content">
+		<p>
+			Esta ação irá dar a esse usuário o acesso ao painel de 
+			<b id="ModalAtivaUsuarioTipoUsuario"></b>
+		</p>
+	</div>
+	<div class="actions">
+		<div 
+			class="ui red basic cancel inverted button"
+			onclick="$( '#IdUsuarioToActive' ).val( '' );">
+			<i class="remove icon"></i>
+			Cancelar
+		</div>
+		<div 
+			class="ui green ok inverted button"
+			onclick="ativaUsuario();">
+			<i class="checkmark icon"></i>
+			Ativar
+		</div>
+	</div>
+</div>
+
+<input id="IdUsuarioToActive" type="hidden" value="">
+
+<script>
+	function ativaUsuario(){
+		var sIdUsuario = $( '#IdUsuarioToActive' ).val();
+		var sUserIdParam = ("&UserID=" + sIdUsuario);
+		var sMethodParam = "&Method=ActiveThisUser";
+
+		var url = "http://programacaoferiasverao2020/?RequestFromAjax=true";
+		url = (url + sUserIdParam);
+		url = (url + sMethodParam);
+
+		$.get( url, function( data ){
+			var oResponse = JSON.parse( eval( data ) );
+
+			if ( oResponse.status = "success" ){
+				$( ("#TR" + sIdUsuario) ).addClass( "hide" );
+			} else if ( oResponse.status = "error" ){
+				Swal.fire(
+					oResponse.message,
+					'error'
+				)
+			}
+		} );
+	}
+
+	function showModalAtivaUsuario( sIdUsuario ){
+		var oModalCampoNomeUsuario = $( "#ModalAtivaUsuarioNomeUsuario" );
+		var oModalCampoTipoUsuario = $( "#ModalAtivaUsuarioTipoUsuario" );
+		var sNomeUsuario = $( ("#NM"+sIdUsuario) ).text();
+		var sTipoUsuario = $( ("#USR"+sIdUsuario) ).text();
+
+		$( "#IdUsuarioToActive" ).val( sIdUsuario );
+
+		oModalCampoNomeUsuario.text( sNomeUsuario );
+		oModalCampoTipoUsuario.text( sTipoUsuario );
+
+		$( "#ModalAtivaUsuario" ).modal('setting', 'closable', false).modal( "show" );
+	}
+
+	function setUsuarioAtivo( oUserToActive ){
+		$( ("#TR" + oUserToActive) ).addClass( "hide" );
+	}
+</script>
