@@ -5,7 +5,11 @@ import { Text, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import styles from './SplashScreenStyle'
 import LottieView from 'lottie-react-native'
-import clockAnimation from '../../Assets/Animations/clock_animation/clock.json'
+import clockAnimation from '../../Assets/Animations/clock_animation/clock_animation.json'
+import textAnimation from '../../Assets/Animations/clock_animation/cron_text_animation.json'
+
+// import clockAnimation from '../../../android/app/src/main/assets/lottie/clock_animation/data.json'
+
 // import clockAnimation from '../../Assets/Animations/1633.json'
 
 import { View as AnimatedView } from 'react-native-animatable'
@@ -27,21 +31,11 @@ export default function SplashScreen() {
     <LinearGradient colors={['#A8A7A7', '#99B898', '#474747', '#363636']} style={styles.viewStyles}>
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <View style={{ flex: 30 }}></View>
+        <LottieView source={clockAnimation} autoPlay loop style={{ width: '40%' }} />
 
         <AnimatedView ref={animationRef} style={{ flex: 80, flexDirection: 'column' }}>
-          <Text
-            style={{
-              textShadowRadius: 20,
-              color: fontColor,
-              fontSize: 20,
-              width: '100%',
-              textAlign: 'center',
-            }}
-          >
-            The Clocker
-          </Text>
-          <LottieView source={clockAnimation} autoPlay loop />
-
+        <LottieView source={textAnimation} autoPlay loop style={{ width: '100%' }} />
+          
         </AnimatedView>
       </View>
     </LinearGradient>

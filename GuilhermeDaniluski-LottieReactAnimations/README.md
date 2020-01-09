@@ -7,14 +7,6 @@ This application is made on top of this [Boilerplate](https://github.com/thecodi
 
 WARNING: If you want to use this project as a boilerplate use this [commit](https://github.com/ViniciusAg/ProgramacaoFeriasVerao2020/tree/bcfa8e19eda8343030b645fc956940337cf1b2aa)
 
-## Goals
-
-- **The main goal is to learn and build a project using automated test techniques to speed up and make the proccess of testing new features more robust.**
-
-- **Another goal is to improve the way i build the UX, focusing on simplicity and praticity.**
-
-- **Along with this project i will be building an application that consist on a Chronometer.**
-
 ## Architecture
 
 - **State is managed using global [Redux](https://redux.js.org/) stores**.
