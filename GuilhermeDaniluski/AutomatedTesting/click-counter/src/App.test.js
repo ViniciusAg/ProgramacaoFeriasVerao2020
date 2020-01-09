@@ -1,23 +1,21 @@
-import React from 'react'
-import Enzyme, {shalow} from 'enzyme'
-import EnzymeAdapter from 'enzyme-adapter-react-16'
+import React from "react";
+import Enzyme, { shallow } from "enzyme";
+import EnzymeAdapter from "enzyme-adapter-react-16";
 
-import App from './App'
+import App from "./App";
 
-Enzyme.configure({adapter: new EnzymeAdapter()})
+Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-test('renders without error', ()=>{
-
-})
-
-test('renders increment button', () => {
-  
+test("renders without error", () => {
+  const wrapper = shallow(<App />);
+  const appComponent = wrapper.find("[data-test='component-app']");
+  expect(appComponent.length).toBe(1);
 });
 
-test('renders display counter', () => {
-  
-});
+test("renders increment button", () => {});
 
-test('counter start at zero', () => {
-  
-});
+test("renders display counter", () => {});
+
+test("counter start at zero", () => {});
+
+test("clicking button increments counter display", () => {});
