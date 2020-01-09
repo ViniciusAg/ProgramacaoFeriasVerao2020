@@ -1,1 +1,101 @@
-<img style="display: block; margin-left: auto; margin-right: auto;" src="img/img-manutencao.png" alt="">
+<table 
+	id="TableUsuariosAtivos" 
+	class="visible ui mini compact striped celled selectable purple table"
+	style="width: 100%;">
+
+	<thead>
+		<tr>
+			<th colspan="11">Usuários Ativos</th>
+		</tr>
+		<tr>
+			<th>Nome</th>
+            <th>Nascimento</th>
+            <th>Etnia</th>
+            <th>Gênero</th>
+			<th>Ano</th>
+			<th>Escolaridade</th>
+            <th>Escola Ensino Médio</th>
+            <th>Endereço</th>
+			<th>E-mail</th>
+			<th>WhatsApp</th>
+			<th>Tipo</th>
+		</tr>
+	</thead>
+	<tbody id="tBodyUsuariosAtivos">
+		{{MNEMONICO_TBODY_USUARIOS_ATIVOS}}
+	</tbody>
+</table>
+
+<div id="ModalInativaUsuario" class="ui basic modal">
+	<div class="ui icon header">
+		<h1>
+			Deseja INATIVAR o usuário 
+			<b id="ModalInativaUsuarioNomeUsuario"></b>?
+		</h1>
+	</div>
+	<div class="content">
+		<p>
+			Esta ação irá TIRAR desse usuário o acesso ao painel de 
+			<b id="ModalInativaUsuarioTipoUsuario"></b>
+		</p>
+	</div>
+	<div class="actions">
+		<div 
+			class="ui red basic cancel inverted button"
+			onclick="$( '#IdUsuarioToInactive' ).val( '' );">
+			<i class="remove icon"></i>
+			Cancelar
+		</div>
+		<div 
+			class="ui green ok inverted button"
+			onclick="inativaUsuario();">
+			<i class="checkmark icon"></i>
+			Ativar
+		</div>
+	</div>
+</div>
+
+<input id="IdUsuarioToInactive" type="hidden" value="">
+
+<script>
+	// function inativaUsuario(){
+	// 	var sIdUsuario = $( '#IdUsuarioToInactive' ).val();
+	// 	var sUserIdParam = ("&UserID=" + sIdUsuario);
+	// 	var sMethodParam = "&Method=ActiveThisUser";
+
+	// 	var url = "http://programacaoferiasverao2020/?RequestFromAjax=true";
+	// 	url = (url + sUserIdParam);
+	// 	url = (url + sMethodParam);
+
+	// 	$.get( url, function( data ){
+	// 		var oResponse = JSON.parse( eval( data ) );
+
+	// 		if ( oResponse.status = "success" ){
+	// 			$( ("#TR" + sIdUsuario) ).addClass( "hide" );
+	// 		} else if ( oResponse.status = "error" ){
+	// 			Swal.fire(
+	// 				oResponse.message,
+	// 				'error'
+	// 			)
+	// 		}
+	// 	} );
+	// }    ////    Configurar Inativação de Usuario
+
+	// function showModalInativaUsuario( sIdUsuario ){
+	// 	var oModalCampoNomeUsuario = $( "#ModalAtivaUsuarioNomeUsuario" );
+	// 	var oModalCampoTipoUsuario = $( "#ModalAtivaUsuarioTipoUsuario" );
+	// 	var sNomeUsuario = $( ("#NM"+sIdUsuario) ).text();
+	// 	var sTipoUsuario = $( ("#USR"+sIdUsuario) ).text();
+
+	// 	$( "#IdUsuarioToActive" ).val( sIdUsuario );
+
+	// 	oModalCampoNomeUsuario.text( sNomeUsuario );
+	// 	oModalCampoTipoUsuario.text( sTipoUsuario );
+
+	// 	$( "#ModalAtivaUsuario" ).modal('setting', 'closable', false).modal( "show" );
+	// }
+
+	// function setUsuarioAtivo( oUserToActive ){
+	// 	$( ("#TR" + oUserToActive) ).addClass( "hide" );
+	// }
+</script>

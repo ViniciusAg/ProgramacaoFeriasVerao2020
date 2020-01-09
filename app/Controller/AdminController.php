@@ -1,8 +1,54 @@
 <?php
     class AdminController{
+        private function getUsuariosAtivos( &$htmIndex, $oAdminModel ){
+            $htmUsuariosAtivos = file_get_contents( "app/View/AdminView/AbaMenuUsuariosAtivos.html" );
+
+            $htmIndex = str_replace( 
+            	"{{MNEMONICO_SEGMENT_USUARIOS_ATIVOS}}", 
+            	$htmUsuariosAtivos, 
+            	$htmIndex
+             ); ////    Carrega Janela Usuarios Sem Acesso
+
+            $oUsuariosRegistrados = NULL;
+
+            $oAdminModel->getUsuariosRegistrados( $oUsuariosRegistrados );
+             
+            $sTableUsuariosAtivosRows = "";
+
+            foreach ( $oUsuariosRegistrados as $key => $value ) {
+                if ( $value[ "status" ] == "Ativo" ){
+                    $sId = $value[ "id" ];
+                    $sEndereco    = $value[ "logradouro" ].", No".$value[ "numero" ];
+                    $sEndereco   .= " - ".$value[ "bairro" ].", ".$value[ "cidade" ];
+                    $sTipoUsuario = $sId . "'>" . $value[ "tipo_usuario" ];
+
+                    $sRowToShow  = "";
+                    $sRowToShow .= "<tr id='UsrAtv" . $sId . "'>";
+                    $sRowToShow .=   "<td id='UsrAtvNome" . $sId . "'>" . $value[ "nome" ]  . "</td>" . "\n";
+                    $sRowToShow .=   "<td>"               . $value[ "data_nascimento" ]     . "</td>" . "\n";
+                    $sRowToShow .=   "<td>"               . $value[ "etnia" ]               . "</td>" . "\n";
+                    $sRowToShow .=   "<td>"               . $value[ "genero" ]              . "</td>" . "\n";
+                    $sRowToShow .=   "<td>"               . $value[ "ano_matricula" ]       . "</td>" . "\n";
+                    $sRowToShow .=   "<td>"               . $value[ "escolaridade" ]        . "</td>" . "\n";
+                    $sRowToShow .=   "<td>"               . $value[ "escola_ensino_medio" ] . "</td>" . "\n";
+                    $sRowToShow .=   "<td>"               . $sEndereco                      . "</td>" . "\n";
+                    $sRowToShow .=   "<td>"               . $value[ "email" ]               . "</td>" . "\n";
+                    $sRowToShow .=   "<td>"               . $value[ "whatsapp" ]            . "</td>" . "\n";
+                    $sRowToShow .=   "<td id='UsrAtvTipo" . $sTipoUsuario                   . "</td>" . "\n";
+                    $sRowToShow .= "</tr>";
+
+                    $sTableUsuariosAtivosRows .= $sRowToShow . "\n";
+                }
+
+            }   $htmIndex = str_replace( 
+                "{{MNEMONICO_TBODY_USUARIOS_ATIVOS}}",
+                $sTableUsuariosAtivosRows, 
+                $htmIndex
+             ); ////   Alimenta Table Usuarios Ativos
+        }
+
         private function getUsuariosSemAcesso( &$htmIndex, $oAdminModel ){
             $htmUsuariosSemAcesso = file_get_contents( "app/View/AdminView/AbaMenuUsuariosSemAcesso.html" );
-            $htmUsuariosAtivos 	  = file_get_contents( "app/View/AdminView/AbaMenuUsuariosAtivos.html" );
 
             $htmIndex = str_replace( 
             	"{{MNEMONICO_SEGMENT_USUARIOS_SEM_ACESSO}}", 
@@ -82,6 +128,7 @@
             $oUsuariosInativos = NULL;
 
             AdminController::getUsuariosSemAcesso( $htmIndex, $oAdminModel );
+            AdminController::getUsuariosAtivos( $htmIndex, $oAdminModel );
 
             $htmIndex = str_replace( 
             	"{{MNEMONICO_SEGMENT_USUARIOS_ATIVOS}}", 
