@@ -43,5 +43,4 @@ ferramenta <strong>Figma</strong>, que permite visualizar o script .css dos elem
 
 Em <strong>layout</strong>, é possível visualizar o site tanto na versão para <strong>desktop</strong> como <strong>mobile</strong>.
 
-<strong>Status da Aplicação: </strong> Em desenvolvimento.
-
+<strong>Status da Aplicação: </strong> Em desenvolvimento. 
