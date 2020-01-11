@@ -1,0 +1,313 @@
+/*Configurações Gerais*/
+* { 
+	margin: 0; 
+	padding: 0; 
+	font-size: 100%; 
+	border: none;
+	outline: none;
+	font-weight: 300; 
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+body { background-color: #f5f5f5; }
+a { text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; }
+
+/*Cabeçalho*/
+.logo {
+	width: 96px;
+	height: 96px;
+	float: left; 
+	background: url(../img/logo.png) center center/56px no-repeat;
+	font-size: 0;
+	margin-top: 0;
+	margin-left: 0;
+}
+
+.btn-menu {
+	width: 56px; 
+	height: 56px; 
+	float: right;
+	text-align: center;
+	color: #fff; 
+	border-radius:56px; 
+	cursor: pointer;
+	margin-top: 4%;
+	margin-right: 2%;
+
+	/*Plano de fundo com cor degrade*/
+	background: linear-gradient(to right,#ce2e3c,#da6709);
+}
+
+/*Menu*/
+.menu {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-color: rgba(0,0,0,0.9); 
+	top: 0; 
+	left: 0;
+}
+.btn-close {
+	font-size: 1.5em;
+	color: #fff; 
+	float: right; 
+	cursor: pointer; /*Deixa o elemento clicavel*/
+	margin: 2% 3% 0 0;
+}
+
+.menu ul { /*Deixa todos os tópicos centralizados*/
+	width: 100%;
+	float: left; 
+	text-align: center;
+}
+
+.menu li {
+	padding: 1.5%; /*Deixa os tópicos espaçados*/
+}
+
+.menu li a { 
+	font-size: 2em;
+	color: #fff; 
+	padding: 1.5% 3%;
+}
+.menu li a:hover {
+	color: pink;
+}
+
+/*Construção do banner*/
+.banner{
+	width: 100%;
+	float: left;
+	padding: 3% 4%;
+	background: url("../img/bg.jpg");
+}
+.title{
+	width: 100%;
+	font-size: 2.5em;
+	color: #fff; 
+	text-align: center;
+}
+.title h2 {
+	font-weight: 700;
+	color: #fff; 
+}
+
+.title h3 {
+	font-weight: 700;
+	color: #fff; 
+}
+
+
+.buttons{
+	width: 100%;
+	float: right; /*O elemento flutua, isto é, é levado para a direita*/
+	margin-top: 5%;
+}
+
+.btn-ver{
+	width: 100%;
+	font-size: 1.5em;
+	text-align: left;
+	cursor: pointer;
+	background-color: #fff;
+	color: #130400;
+	border-radius: 7px;
+	padding: 5%;
+}
+
+.btn-free{
+	width: 100%;
+	font-size: 1.5em;
+	text-align: left;
+	cursor: pointer;
+	background-color: #130400;
+	color: #fff;
+	border-radius: 7px;
+	padding: 5%;
+	margin-top: 2%;
+}
+
+/*Projetos*/
+.servicos{
+	width: 100%; /*Para ocupar 100% da tela*/
+	float: left;
+	padding:  3% 4%;
+}
+
+.servico{
+	width: 100%;
+	background-color: #fff;
+	text-align: left;
+	border-radius: 7px;
+	margin-bottom: 3%;
+}
+
+.servico img{
+	border-radius: 7px;
+}
+
+.inner{
+	padding: 7%;
+}
+
+.inner a{
+	font-size: 1.5em;
+	color: #130400;
+	font-weight: 700;
+}
+.inner h4 {
+	font-size: 1.2em;
+	color: #130400; 
+	margin-top: 2%;
+}
+.inner p {
+	margin-top: 6%; 
+	color: #130400; 
+	line-height: 1.5em; /*Altura das linhas*/
+}
+/* Pré-Rodapé*/
+.newslatter{
+	width: 100%;
+	float: left;
+	text-align: center;
+	padding: 3% 4%;
+	background: linear-gradient(to right,pink,red);
+}
+
+.newslatter h2{
+	font-size: 1.5em;
+	color: #fff;
+	font-weight: 700;
+}
+
+.newslatter h3{
+	color: #fff;
+
+}
+
+.newslatter form{
+	margin-top: 2%;
+}
+
+.newslatter input{
+	width: 100%; 
+	color: #fff; 
+	border: 1px solid rgba(255,255,255,0.3);; 
+	padding: 5%; 
+}
+
+.newslatter button{
+	width: 100%; 
+	color:#130400; 
+	padding: 5%; 
+	cursor: pointer; 
+	margin-top: 2%;
+}
+
+/*Rodapé*/
+
+.rodape{
+	width: 100%;
+	float: left;
+	padding: 3% 4%;
+	text-align: center;
+	background: black;
+}
+
+.social-icon a{
+	font-size: 1.5em; 
+	color: rgba(255,255,255,0.7); 
+	margin-right: 3%;
+}
+
+.social-icon a:hover {
+	color: rgb(255,255,255);
+}
+
+.social-icons a:last-child {
+	margin-right: 0; /*Zera a margem do ultimo element de a*/
+}
+
+.copyright {
+	color: rgba(255, 255, 255, 0.7); 
+	margin-top:2%;
+}
+
+@media print { /*Tudo o que vai aparecer na página de impressão*/
+	.title h2 {
+		font-weight: 700;
+		color: red; 
+	}
+
+	.title h2 {
+		font-weight: 700;
+		color: blue; 
+	}
+}
+
+@media screen and (min-width: 700px) { /*Tudo o que vai aparecer na página de impressão*/
+
+	/*Here, do you can to change everything that you is necessary. */
+
+	.logo {
+		position: absolute;
+		float: left; 
+		color: pink;
+		font-size: 20px;
+		margin-top: 1%;
+		margin-left: 3%;
+		background: none;
+		width: 60%;
+		font-weight: 700;
+	}
+
+	.btn-menu {
+		margin-top: 2%;
+		margin-right: 2%;
+		margin-bottom: 2%;
+	}
+
+	.title { 
+		width: 70%; 
+		float: left;
+		text-align: left;
+	}
+	.buttons{
+		width: 40%;
+		margin-top: 5%;
+	}
+
+	.buttons {width: 30%; float: right; margin-top: 0; }
+	.servico {
+		width: 30%; 
+		float: left; 
+		margin-right: 1%;
+		margin-left: 2%;
+		text-align: center;
+	}
+	.newslatter form{
+		margin-top: 1%;
+	}
+
+	.newslatter input{
+		width: 70%; 
+		padding: 1%; 
+	}
+
+	.newslatter button{
+		width: 20%; 
+		padding: 1%; 
+		margin-top: 2%;
+	}
+	.btn-menu {display: none;}
+	.btn-close {display: none;}
+	.menu {width: auto; height: 56px; line-height: 56px; float: right; background-color: #f5f5f5; 
+	display: inline-block; position: static; margin-right: 10%}
+	.menu li {padding: 0; float: left;}
+	.menu li a {color:#130400; font-size: 1em; padding: 15px; }
+	.menu li a:hover {color: pink; }
+
+}

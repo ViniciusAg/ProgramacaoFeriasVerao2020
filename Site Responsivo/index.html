@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+
+      <!-- Codification -->
+    	<meta charset="utf-8">
+
+      <!-- Put the width igual to width to your device , "initial" define the incial zoom -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <title>Diana - FrontEnd Developer</title>
+
+      <meta name="description" content="My first responsive website">
+
+      <meta name="keywords" content="responsive website, css, html, js, desing">
+
+      <meta name=robots content="index, follow">
+
+      <meta name="author", content="Diana Regina">
+
+      <link rel="stylesheet" href="css/style.css">
+
+      <!-- Include founts and icons of your website-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+      <!-- Google Founts - Montserrat -->
+      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+      <link rel="icon", href="img/icon.png">
+    </head>
+    <body>
+
+      <header class="cabecalho">
+        
+          <h1 class="logo">Diana - FrontEnd Developer</h1>
+        
+
+        <!--Pegando um icone do site Getting Founts-->
+        <button class="btn-menu">
+          <!--Podemos mudar o tamnho do icon-->
+          <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+        </button>
+
+        <!-- Criando um menu -->
+        <nav class="menu">
+          <a class="btn-close">
+           <i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i>
+          </a>
+          <ul class="menuTopics">
+            <li><a href="#">Sobre mim</a></li>
+            <li><a href="#">Sobre o site</a></li>
+            <li><a href="#">Projetos</a></li>
+            <li><a href="#">Eventos</a></li>
+            <li><a href="#">Entrar em Contato</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!--Criando um baner-->
+      <div class="banner">
+        <!--Conteudo do banner-->
+
+        <!--Textos-->
+        <div class="title">
+          <h2>Acompanhe meus Projetos</h2>
+          <h3>Veja em <strong>projetos</strong> ou <strong>GitHub</strong></h3>
+        </div>
+
+        <!--Botões-->
+        <div class="buttons">
+          <button class="btn-ver">Ver Projetos
+              <i class="fa fa-book" aria-hidden="true" id="iconVer"></i>
+          </button>
+          <button class="btn-free">Me contratar como freelancer
+              <i class="fa fa-laptop" aria-hidden="true"></i>
+          </button>
+        </div>
+
+
+      </div>
+
+      <main class="servicos">
+
+        <!--Primeiro artigo-->
+        <article class="servico">
+          <a href="#"><img src="img/criacoes.jpg" alt="projects"></a>
+          <div class="inner">
+            <a href="#"> Projetos com Python </a>
+            <h4>Matplotlib, Pandas, Sk-learn, Numpy, Open-CV e mais </h4>
+
+
+          </div>
+        </article>
+
+        <!--Segundo artigo-->
+
+        <article class="servico">
+          <a href="#"><img src="img/md.jpg" alt="Skills"></a>
+          <div class="inner">
+            <a href="#"> Minhas Skills </a>
+            <h4>Habilidades e outros conhecimentos </h4>
+
+
+          </div>
+        </article>
+
+        <!--Terceiro Artigo-->
+        <article class="servico">
+          <a href="#"><img src="img/cs.jpg" alt="FrontEnd"></a>
+          <div class="inner">
+            <a href="#"> Outros sites desenvolvidos </a>
+            <h4> Conheça meu trabalho como frontend </h4>
+
+
+          </div>
+        </article>
+      </main>
+
+      <section class="newslatter">
+        <h2>Entre em contato</h2>
+        <h3>Se gostou dos projetos, entre em contato para receber notificações de novas atualizações</h3>
+        <form>
+          <input type="email" name="email" placeholder="Insira seu Email">
+          <button>Cadastrar</button>
+        </form>
+        
+        
+      </section>
+
+      <!--Rodapé-->
+      <footer class="rodape">
+        <div class="social-icon">
+          <a href="#">
+            <i class="fa fa-github-alt" aria-hidden="true"></i>
+          </a>
+
+          <a href="#">
+            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+          </a>
+
+        </div>
+
+        <p class="copyright">
+          Copyright © NodeProp 2016. Todos os direitos reservados.
+        </p>
+      </footer>
+
+      <!--Open Jquery for events-->
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+      <script type="text/javascript">
+
+        //Quando o botão de menu for clicado
+        $(".btn-menu").click(function(){
+            $(".menu").show();
+        });  
+
+        //Quando o x for clicado
+        $(".btn-close").click(function(){
+            $(".menu").hide();
+        })
+      </script>  
+    </body>
+</html>
