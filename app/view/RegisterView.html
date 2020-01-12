@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="dist/semantic/calendar.min.css">
+
 <div class="ui container" style="padding-top: 1vh">
 	<div class="ui one column middle center aligned grid">
 
@@ -276,8 +278,9 @@
 		var sAdress = $( input ).val().trim();
 		var sAdressParam = ("&EmailAdress=" + sAdress);
 		var sMethodParam = "&Method=CheckThisEmail";
+		var sHost = "{{MNEMONICO_URL_HOST}}";
 		if ( sAdress != "" ){
-			var url = "http://programacaoferiasverao2020/?RequestFromAjax=true";
+			var url = ("http://" + sHost + "/?RequestFromAjax=true");
 			url = (url + sAdressParam);
 			url = (url + sMethodParam);
 

@@ -21,6 +21,8 @@
     session_start();
     // $_SESSION = [];
 
+    $sHost = "programacaoferiasverao2020";
+
     if ( isset( $_GET[ "RequestFromAjax" ] ) and $_GET[ "RequestFromAjax" ] == "true" ){
         ob_start(); ////    inicializa buffer
 
@@ -43,7 +45,11 @@
 
         $htmBodyOfPage = ob_get_contents(); ////    armazena todos os "echo"
 
-        ob_end_clean();
+        $htmBodyOfPage = str_replace( 
+            "{{MNEMONICO_URL_HOST}}", 
+            $sHost, 
+            $htmBodyOfPage 
+        ); ob_end_clean();
 
         $htmEstruturaPage = str_replace( "{{CONTENT}}", $htmBodyOfPage, $htmEstruturaPage );
         $htmEstruturaPage = str_replace( "{{NUCLEO}}", "Rosa Parks", $htmEstruturaPage );

@@ -10,7 +10,9 @@
 
             if ( ($oRequestAlunosTurma) && ($oRequestAlunosTurma->num_rows) ){
                 foreach ( $oRequestAlunosTurma as $item) {
-                	$sListagemDeAlunos .= "<tr onclick='" . $sOnClick ."' ><td>" . $item[ "nome" ] . "</td></tr>";
+                	$sListagemDeAlunos .= "<tr id='" . $item[ "id" ] . "' onclick='" . $sOnClick ."' >";
+                    $sListagemDeAlunos .= "<td>" . $item[ "nome" ] . "</td>";
+                    $sListagemDeAlunos .= "</tr>";
                 }
             }
 

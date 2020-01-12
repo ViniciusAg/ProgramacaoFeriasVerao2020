@@ -78,8 +78,9 @@
 		var sIdUsuario = $( '#IdUsuarioToActive' ).val();
 		var sUserIdParam = ("&UserID=" + sIdUsuario);
 		var sMethodParam = "&Method=ActiveThisUser";
+		var sHost = "{{MNEMONICO_URL_HOST}}";
 
-		var url = "http://programacaoferiasverao2020/?RequestFromAjax=true";
+		var url = ("http://" + sHost + "/?RequestFromAjax=true");
 		url = (url + sUserIdParam);
 		url = (url + sMethodParam);
 
@@ -87,20 +88,6 @@
 			var oResponse = JSON.parse( eval( data ) );
 
 			var sNewRow = [];
-
-			// sNewRow  = "<tr class='em-aula'>";
-			// sNewRow += "<td>" + oResponse.nome + "</td>";
-			// sNewRow += "<td>" + oResponse.data_nascimento + "</td>";
-			// sNewRow += "<td>" + oResponse.etnia + "</td>";
-			// sNewRow += "<td>" + oResponse.genero + "</td>";
-			// sNewRow += "<td>" + oResponse.ano_matricula + "</td>";
-			// sNewRow += "<td>" + oResponse.escolaridade + "</td>";
-			// sNewRow += "<td>" + oResponse.escola_ensino_medio + "</td>";
-			// sNewRow += "<td>" + oResponse.endereco + "</td>";
-			// sNewRow += "<td>" + oResponse.email + "</td>";
-			// sNewRow += "<td>" + oResponse.whatsapp + "</td>";
-			// sNewRow += "<td>" + oResponse.tipo + "</td>";
-			// sNewRow += "</tr>"
 
 			sNewRow.push( oResponse.nome );
 			sNewRow.push( oResponse.data_nascimento );
@@ -116,7 +103,6 @@
 
 			if ( oResponse.status = "success" ){
 				$( ("#TR" + sIdUsuario) ).addClass( "hide" );
-				// $( "#tBodyUsuariosAtivos" ).prepend( sNewRow );
 				$( '#TableUsuariosAtivos' ).DataTable().row.add( sNewRow ).draw();
 			} else if ( oResponse.status = "error" ){
 				window.alert( "Oops... algo deu errado." );

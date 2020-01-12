@@ -5,36 +5,67 @@
 	<div class="ui one column middle center aligned grid">
 		<div class="sixteen wide mobile eight wide tablet eight wide computer column">
 
-			<form id="FormView" name="FormView" class="ui form" method="POST">
-				<table class="ui pink celled table">
-					<thead>
-						<tr>
-							<th>Turma {{MNEMONICO_TURMA}}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{{MNEMONICO_LISTAGEM}}
-					</tbody>
-				</table>				  
-			    <button 
-			    	class="ui large purple button" 
-			    	type="submit">
-			    	Enviar
-			    </button>
-
-				{{MNEMONICO_INPUT_LOGOUT}}
-
-			</form>
-			
+			<table class="ui pink celled table">
+				<thead>
+					<tr>
+						<th>Turma {{MNEMONICO_TURMA}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{MNEMONICO_LISTAGEM}}
+				</tbody>
+			</table>				  
+			<a 
+				class="ui large purple button"
+				onclick="setPresences();">
+				Enviar
+			</a>			
 		</div>
 	</div>
 </div>
 
+<form id="FormView" name="FormView" class="ui form" method="POST">
+	{{MNEMONICO_INPUT_LOGOUT}}
+</form>
+
 <script>
+	var aAlunosPresentes = [];
+
+	function removeArrayItemAtPosition( aArray, iPosition ){
+		var aNewArray = aArray
+			.slice( 0, iPosition )
+			.concat( aArray.slice( (iPosition + 1), aArray.length ) );
+		return aNewArray;
+	}	////	Function to remove a selected ALUNO
+
+	function setPresences(){
+		var sHost = "{{MNEMONICO_URL_HOST}}";
+		var sMethodParam = "&Method=SetPresenceTo";
+		var sAlunosPresentesParam = "";
+
+		if ( aAlunosPresentes != [] ){
+			for( var i = 0; i < aAlunosPresentes.length; i++ ){
+				sAlunosPresentesParam += ("&AlunosPresentes[]=" + aAlunosPresentes[i]);
+			}
+		} var url = ("http://" + sHost + "/?RequestFromAjax=true" + sMethodParam + sAlunosPresentesParam);
+
+		$.get( url, function ( data ) {
+			var sResponse = eval( data );
+			console.log( sResponse );
+		} );
+	}	////	Event Click at ENVIAR
+
 	function getNewStatus( oAluno ){
-		if ( oAluno.hasClass( "em-aula" ) )
-			oAluno.removeClass( "em-aula" );
-		else
+		var iAlunoID = oAluno.attr( "id" );
+
+		if ( oAluno.hasClass( "em-aula" ) ){
+			aAlunosPresentes = removeArrayItemAtPosition( 
+				aAlunosPresentes, 
+				aAlunosPresentes.indexOf( iAlunoID )
+			 ); oAluno.removeClass( "em-aula" );
+		} else{
+			aAlunosPresentes.push( iAlunoID );
 			oAluno.addClass( "em-aula" );
-	}
+		}
+	}	////	Event Click at Aluno TR
 </script>

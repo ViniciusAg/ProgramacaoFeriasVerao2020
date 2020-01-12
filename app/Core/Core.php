@@ -145,31 +145,38 @@
             header('Access-Control-Allow-Origin: *');
             header('Access-Control-Allow-Methods: GET, POST');
             header("Access-Control-Allow-Headers: X-Requested-With");
-        }
+        }   ////    Config to Enable Ajax (?)
 
         public function verifyThisGetRequest(){
-            if ( isset( $_GET[ "UserID" ] ) ){
-                Core::abbleCors();
-                $sUserToManage = $_GET[ "UserID" ];
-                $sMethod = $_GET[ "Method" ];
+            if ( isset( $_SESSION ) ){
+                if ( isset( $_GET[ "AlunosPresentes" ] ) ){
+                    // echo json_encode( '{ "message": "hello world" }' );
+                    echo json_encode( '{ "message": "' . print_r( $_GET[ "AlunosPresentes" ] ) . '" }' );
+                }   ////    #  RECEBO ALUNOS PRESENTES, FALTA REALIZAR CHAMADA
 
-                if ( $sMethod == "ActiveThisUser" ){
-                    $oAPIController = new APIController;
-                    $oAPIController->ActiveThisUser( $sUserToManage );
-                }   
+                if ( isset( $_GET[ "UserID" ] ) ){
+                    Core::abbleCors();
+                    $sUserToManage = $_GET[ "UserID" ];
+                    $sMethod = $_GET[ "Method" ];
+
+                    if ( $sMethod == "ActiveThisUser" ){
+                        $oAPIController = new APIController;
+                        $oAPIController->ActiveThisUser( $sUserToManage );
+                    }   
+                }   ////    Activate New User [AdminView]
+
+                if ( isset( $_GET[ "EmailAdress" ] ) ){
+                    Core::abbleCors();
+                    $sEmailValido = $_GET[ "EmailAdress" ];
+                    $sMethod = $_GET[ "Method" ];
+
+                    if ( $sMethod == "CheckThisEmail" ){
+                        $oAPIController = new APIController;
+                        $oAPIController->checkThisEmail( $sEmailValido );
+                    }                
+                }   ////    Check An Email Adress [RegisterView]
             }
-
-            if ( isset( $_GET[ "EmailAdress" ] ) ){
-                Core::abbleCors();
-                $sEmailValido = $_GET[ "EmailAdress" ];
-                $sMethod = $_GET[ "Method" ];
-
-                if ( $sMethod == "CheckThisEmail" ){
-                    $oAPIController = new APIController;
-                    $oAPIController->checkThisEmail( $sEmailValido );
-                }                
-            }
-        }   ////    Verifica Solicitação de Registro
+        }   ////    Manage Interface API
     }
 
  ?>
