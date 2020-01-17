@@ -10,5 +10,7 @@ console.log(meuObjeto)
 
 meuObjeto.novoObj = {novoValor : 300, teste2 : "String"}
 
+meuObjeto.resultado = meuObjeto.novoObj.novoValor + meuObjeto.valor
+
 console.log(meuObjeto.novoObj.teste2)
 console.log(meuObjeto)
