@@ -14,3 +14,7 @@ meuObjeto.resultado = meuObjeto.novoObj.novoValor + meuObjeto.valor
 
 console.log(meuObjeto.novoObj.teste2)
 console.log(meuObjeto)
+
+//Outra forma de acessar os atributos, sem o operador ponto
+meuObjeto["valor"] = 30
+console.log(meuObjeto)
