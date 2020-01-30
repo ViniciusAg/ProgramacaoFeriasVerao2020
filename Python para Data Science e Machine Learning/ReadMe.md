@@ -111,85 +111,84 @@ O curso é divido em 25 seções e em duas partes principais, uma de Data Scienc
 <li><p><b>Seção 14 - Introdução ao Machine Learning:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor comenta o basico sobre <a href="https://pt.wikipedia.org/wiki/Aprendizado_de_máquina">Machine Learning</a>. Explica sobre os diferentes metodos de aprendizagem e apresenta algumas possiveis aplicações. O autor deixa para download um livro sobre estatistica para ser usado como base caso necessário, porém avisar não haver necessidade de ler o livro para acompanhar o curso.</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 15 - Regressões Lineares:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre <a href="https://pt.wikipedia.org/wiki/Regressão_linear">Regressões Lineares</a>. O autor demonstra como fazer uso do conceito através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 16 - Balanço Viés-Variância:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre <a href="https://en.wikipedia.org/wiki/Bias–variance_tradeoff">Balanço Viés-Variância</a>. O autor demonstra como fazer uso do conceito através do Python. Deixa um Projeto e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 17 - Regressão Logística:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre <a href="https://pt.wikipedia.org/wiki/Regressão_log%C3%ADstica"> Regressões Logísticas</a>. O autor demonstra como fazer uso do conceito através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 18 - K Nearest Neighbors (KNNs):</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">K Nearest Neighbors</a>. O autor demonstra como fazer uso do conceito através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 19 - Árvore de Decisão e Florestas Aleatórias:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre <a href="https://pt.wikipedia.org/wiki/Árvore_de_decisão" >Árvore de Decisão</a> e sobre <a href="https://en.wikipedia.org/wiki/Random_forest" >Florestas Aleatórias</a>. O autor demonstra como fazer uso dos conceitos através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 20 - Support Vector Machines (SVMs):</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre <a href="https://pt.wikipedia.org/wiki/Máquina_de_vetores_de_suporte">Support Vector Machines</a>. O autor demonstra como fazer uso do conceito através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 21 - K Means Clustering:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre <a href="https://pt.wikipedia.org/wiki/K-means">K Means Clustering</a>. O autor demonstra como fazer uso do conceito através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 22 - Análise do Componente Principal:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre a <a href="https://pt.wikipedia.org/wiki/Análise_de_componentes_principais">Análise do Componente Principal</a>. O autor demonstra como fazer uso do conceito através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
-</ul>
 <li><p><b>Seção 23 - Sistemas de Recomendação:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre os <a href="https://pt.wikipedia.org/wiki/Sistema_de_recomendação">Sistemas de Recomendação</a>. O autor demonstra como fazer uso do conceito através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 24 - Processamento de Linguagem Natural:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre o <a href="https://pt.wikipedia.org/wiki/Processamento_de_linguagem_natural">Processamento de Linguagem Natural</a>. O autor demonstra como fazer uso do conceito através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
 <li><p><b>Seção 25 - Big Data e Spark com Python:</b></p>
 <ul>
 <p></p>
-<p>TEXTO DE EXPLICACAO</p>
+<p>Nessa seção o autor apresenta a teoria sobre o <a href="https://pt.wikipedia.org/wiki/Big_data">Big Data</a> e sobre <a href="https://spark.apache.org" >Spark</a>. O autor demonstra como fazer uso dos conceitos através do Python. Deixa um Projeto de e um video de solução do Projeto</p>
 <p></p>
 </ul>
 </li>
