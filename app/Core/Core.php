@@ -39,7 +39,7 @@
             $oRegisterModel->getItemInCadastrosGeraisById_Tipo( $sNameOfRegisterWhatWeWant );
 
             foreach ($sNameOfRegisterWhatWeWant as $key => $value) {
-                if ( $_SESSION[ "id_status" ] == $value[ "id" ] )
+                	if ( $_SESSION[ "id_status" ] == $value[ "id" ] )
                     if ( $value[ "nome" ] == "Aguardando Confirmação" ){
                         $sController = "UsuarioSemAcessoController";
                         $_SESSION[ "StatusDescricao" ] = $value[ "nome" ];
@@ -149,15 +149,20 @@
 
         public function verifyThisGetRequest(){
             if ( isset( $_SESSION ) ){
+                Core::abbleCors();
+                $sMethod = $_GET[ "Method" ];
+
                 if ( isset( $_GET[ "AlunosPresentes" ] ) ){
-                    // echo json_encode( '{ "message": "hello world" }' );
-                    echo json_encode( '{ "message": "' . print_r( $_GET[ "AlunosPresentes" ] ) . '" }' );
-                }   ////    #  RECEBO ALUNOS PRESENTES, FALTA REALIZAR CHAMADA
+                    $aAlunosPresentes = $_GET[ "AlunosPresentes" ];
+
+                    if ( $sMethod == "SetPresenceTo" ){
+                        $oAPIController = new APIController;
+                        $oAPIController->setPresenceTo( $aAlunosPresentes );
+                    }
+                }   ////    Mark Presence To ALUNOS Users [ProfessorView]
 
                 if ( isset( $_GET[ "UserID" ] ) ){
-                    Core::abbleCors();
                     $sUserToManage = $_GET[ "UserID" ];
-                    $sMethod = $_GET[ "Method" ];
 
                     if ( $sMethod == "ActiveThisUser" ){
                         $oAPIController = new APIController;
@@ -166,9 +171,7 @@
                 }   ////    Activate New User [AdminView]
 
                 if ( isset( $_GET[ "EmailAdress" ] ) ){
-                    Core::abbleCors();
                     $sEmailValido = $_GET[ "EmailAdress" ];
-                    $sMethod = $_GET[ "Method" ];
 
                     if ( $sMethod == "CheckThisEmail" ){
                         $oAPIController = new APIController;

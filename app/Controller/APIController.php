@@ -1,6 +1,13 @@
 <?php
 
     class APIController{
+        public function setPresenceTo( $aAlunosPresentes ){
+            $oAPIModel = new APIModel;
+            $sRetorno  = $oAPIModel->setPresenceTo( $aAlunosPresentes );
+
+            echo json_encode( '{ "message": "' . $sRetorno . '" }' );
+        }
+
         public function ActiveThisUser( &$sUserToManage ){
 
             $sDataUser = NULL;

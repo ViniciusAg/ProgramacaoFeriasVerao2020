@@ -1,0 +1,18 @@
+SELECT 
+	cadastros_usuarios.id 		AS id, 
+    cadastros_usuarios.nome 	AS nome,
+    cadastros_gerais.nome   	AS turma,
+    cadastros_usuarios.id_turma AS id_turma,
+    ultima_aula.valor_data 		AS ultima_aula
+FROM cadastros_usuarios 
+	LEFT JOIN (SELECT
+		id, 
+		MAX(data) AS valor_data, 
+		aluno, 
+		professor, 
+		disciplina
+		FROM aulas_dadas GROUP BY id) AS ultima_aula 
+	ON cadastros_usuarios.id = ultima_aula.aluno 
+    INNER JOIN cadastros_gerais 
+    ON cadastros_usuarios.id_turma = cadastros_gerais.id 
+    AND cadastros_usuarios.id_tipo_usuario = '8' ORDER BY cadastros_usuarios.nome;

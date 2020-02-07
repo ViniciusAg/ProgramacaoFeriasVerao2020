@@ -5,14 +5,39 @@
 	<div class="ui one column middle center aligned grid">
 		<div class="sixteen wide mobile eight wide tablet eight wide computer column">
 
+			<div class="row">
+				<table style="width: 100%;">
+					<tbody>
+						<tr>
+							<td>
+								<select class="ui fluid search dropdown" name="TurmaAtual" id="TurmaAtual">
+									{{MNEMONICO_DISCIPLINA}}
+								</select>
+							</td>
+							<td>
+								<select 
+									class="ui fluid search dropdown" 
+									name="TurmaAtual" 
+									id="TurmaAtual"
+									onchange="getAlunosDessaTurma(this)">
+									{{MNEMONICO_TURMA}}
+								</select>
+							</td>
+							<td></td>
+							<td><h1>{{MNEMONICO_AULA_ATUAL}} aula</h1></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
 			<table class="ui pink celled table">
 				<thead>
 					<tr>
-						<th>Turma {{MNEMONICO_TURMA}}</th>
+						<th>{{MNEMONICO_PROFESSOR_ATUAL}}</th>
 					</tr>
 				</thead>
 				<tbody>
-					{{MNEMONICO_LISTAGEM}}
+					{{MNEMONICO_LISTAGEM_ALUNOS}}
 				</tbody>
 			</table>				  
 			<a 
@@ -26,10 +51,16 @@
 
 <form id="FormView" name="FormView" class="ui form" method="POST">
 	{{MNEMONICO_INPUT_LOGOUT}}
+	<input type="hidden" id="TurmaSelecionada" name="TurmaSelecionada" value="A">
 </form>
 
 <script>
 	var aAlunosPresentes = [];
+
+	function getAlunosDessaTurma(oElementoClicado){
+		$("#TurmaSelecionada").val($(oElementoClicado).val());
+		$("#FormView").submit();
+	}
 
 	function removeArrayItemAtPosition( aArray, iPosition ){
 		var aNewArray = aArray
@@ -40,6 +71,9 @@
 
 	function setPresences(){
 		var sHost = "{{MNEMONICO_URL_HOST}}";
+		var sProfessorAtual = "{{MNEMONICO_PROFESSOR_ATUAL}}";
+		var sDisciplinaAtual = null;
+		var sTurmaAtual = null
 		var sMethodParam = "&Method=SetPresenceTo";
 		var sAlunosPresentesParam = "";
 

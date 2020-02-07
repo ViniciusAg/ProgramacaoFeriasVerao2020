@@ -1,0 +1,7 @@
+SELECT 
+	cadastros_gerais.id AS id,
+    cadastros_gerais.nome AS turma
+FROM cadastros_gerais 
+	INNER JOIN tipos_cadastros 
+    ON cadastros_gerais.id_tipo = tipos_cadastros.id
+    AND tipos_cadastros.nome = 'turma';

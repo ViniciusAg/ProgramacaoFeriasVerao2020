@@ -18,6 +18,8 @@
     require_once( "app/Model/APIModel.php" );
     require_once( "app/Model/AdminModel.php" );
 
+    date_default_timezone_set( "America/Fortaleza" );
+
     session_start();
     // $_SESSION = [];
 

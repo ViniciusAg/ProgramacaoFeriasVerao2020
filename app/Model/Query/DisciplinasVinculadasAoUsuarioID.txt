@@ -1,0 +1,10 @@
+SELECT 
+	cadastros_gerais.nome,
+    cadastros_gerais.id
+FROM 
+	relacao_disciplinas_x_usuarios
+    INNER JOIN cadastros_gerais 
+    ON relacao_disciplinas_x_usuarios.id_disciplina = cadastros_gerais.id
+    INNER JOIN cadastros_usuarios
+    ON cadastros_usuarios.id = relacao_disciplinas_x_usuarios.id_usuario
+    AND cadastros_usuarios.id = {{MNEMONICO_ID_PROFESSOR}};

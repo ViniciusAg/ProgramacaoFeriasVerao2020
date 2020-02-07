@@ -1,0 +1,9 @@
+SELECT 
+	cadastros_usuarios.id       AS id,
+    cadastros_usuarios.nome     AS nome,
+    cadastros_gerais.nome       AS turma,
+    cadastros_usuarios.id_turma AS id_turma
+FROM cadastros_usuarios 
+	INNER JOIN cadastros_gerais 
+    ON cadastros_usuarios.id_turma = cadastros_gerais.id 
+    AND cadastros_usuarios.id_tipo_usuario = '8' ORDER BY cadastros_usuarios.nome;
